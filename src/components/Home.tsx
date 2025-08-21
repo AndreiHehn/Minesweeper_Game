@@ -27,7 +27,7 @@ export default function Home() {
         <Button
           color="blue"
           borderRadius="4px"
-          width="120px"
+          width="130px"
           functionButton={() => console.log("Start")}
         >
           {t("Start Game")}
@@ -35,7 +35,7 @@ export default function Home() {
         <Button
           color="gray"
           borderRadius="4px"
-          width="120px"
+          width="130px"
           functionButton={() => console.log("How to Play")}
         >
           {t("How To Play")}
@@ -43,7 +43,7 @@ export default function Home() {
         <Button
           color="blue"
           borderRadius="4px"
-          width="120px"
+          width="130px"
           functionButton={() => setShowModalSettings(true)}
         >
           {t("Settings")}
