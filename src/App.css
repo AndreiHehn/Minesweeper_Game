@@ -5,12 +5,15 @@
 }
 
 body {
+  background-color: var(--background-primary);
 }
 
 .light-theme {
+  --background-primary: #d0d8ff;
 }
 
 .dark-theme {
+  --background-primary: #30385f;
 }
 
 h1,
