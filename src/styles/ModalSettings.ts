@@ -35,11 +35,13 @@ export const Container = styled.div`
       color: var(--text-primary);
     }
   }
-  .themeSelector {
+  .themeSelector,
+  .difficultySelector {
     margin-top: 10px;
     gap: 10px;
 
-    .themeText {
+    .themeText,
+    .difficultyText {
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 10px;

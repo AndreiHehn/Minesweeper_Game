@@ -16,11 +16,14 @@ export function ModalSettings() {
     setResetSettings,
     selectedLanguage,
     setSelectedLanguage,
+    selectedDifficulty,
+    setSelectedDifficulty,
     setSettingsChanged,
   } = useContext(AppContext);
 
   const [localLanguage, setLocalLanguage] = useState(selectedLanguage);
   const [localTheme, setLocalTheme] = useState(theme);
+  const [localDifficulty, setLocalDifficulty] = useState(selectedDifficulty);
 
   const { t } = useTranslation();
 
@@ -46,17 +49,48 @@ export function ModalSettings() {
 
   return (
     <Container>
+      <section className="gameOptions">
+        <div className="sectionSeparator">
+          <h2 className="locationText">{t("Game Options")}</h2>
+          <hr className="sectionLine" />
+        </div>
+        <div className="difficultySelector">
+          <h3 className="difficultyText">{t("Difficulty")}:</h3>
+          <div className="radioButtons">
+            <RadioButton
+              name="difficultyRB"
+              text={t("Easy")}
+              color="var(--app-color)"
+              bgColor="var(--background-primary)"
+              value="easy"
+              checked={localDifficulty == "easy"}
+              onChange={(val) => setLocalDifficulty(val)}
+            ></RadioButton>
+            <RadioButton
+              name="difficultyRB"
+              text={t("Medium")}
+              color="var(--app-color)"
+              bgColor="var(--background-primary)"
+              value="medium"
+              checked={localDifficulty == "medium"}
+              onChange={(val) => setLocalDifficulty(val)}
+            ></RadioButton>
+            <RadioButton
+              name="difficultyRB"
+              text={t("Hard")}
+              color="var(--app-color)"
+              bgColor="var(--background-primary)"
+              value="hard"
+              checked={localTheme == "hard"}
+              onChange={(val) => setLocalDifficulty(val)}
+            ></RadioButton>
+          </div>
+        </div>
+      </section>
       <section className="languageAndTheme">
         <div className="sectionSeparator">
           <h2 className="locationText">{t("Language and Theme")}</h2>
           <hr className="sectionLine" />
-        </div>
-        <div className="languageSelector">
-          <h3 className="languageText">{t("Language")}:</h3>
-          <LanguageSelector
-            selectedLanguage={localLanguage}
-            onSelectLanguage={setLocalLanguage}
-          />
         </div>
         <div className="themeSelector">
           <h3 className="themeText">{t("Theme")}:</h3>
@@ -89,6 +123,13 @@ export function ModalSettings() {
               onChange={(val) => setLocalTheme(val)}
             ></RadioButton>
           </div>
+        </div>
+        <div className="languageSelector">
+          <h3 className="languageText">{t("Language")}:</h3>
+          <LanguageSelector
+            selectedLanguage={localLanguage}
+            onSelectLanguage={setLocalLanguage}
+          />
         </div>
       </section>
       <footer className="footer-buttons">

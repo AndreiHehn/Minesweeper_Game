@@ -17,6 +17,8 @@ interface AppContextProps {
   setTheme: Dispatch<SetStateAction<string>>;
   selectedLanguage: string;
   setSelectedLanguage: Dispatch<SetStateAction<string>>;
+  selectedDifficulty: string;
+  setSelectedDifficulty: Dispatch<SetStateAction<string>>;
   showModalSettings: boolean;
   setShowModalSettings: Dispatch<SetStateAction<boolean>>;
   resetSettings: boolean;
@@ -34,6 +36,9 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [selectedLanguage, setSelectedLanguage] = useState(() => {
     return localStorage.getItem("minesweeper_language") || "en";
   });
+  const [selectedDifficulty, setSelectedDifficulty] = useState(() => {
+    return localStorage.getItem("minesweeper_difficulty") || "easy";
+  });
   const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
   const [resetSettings, setResetSettings] = useState<boolean>(false);
   const [settingsChanged, setSettingsChanged] = useState<boolean>(false);
@@ -46,6 +51,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setTheme,
         selectedLanguage,
         setSelectedLanguage,
+        selectedDifficulty,
+        setSelectedDifficulty,
         showModalSettings,
         setShowModalSettings,
         resetSettings,
