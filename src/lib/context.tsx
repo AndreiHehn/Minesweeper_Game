@@ -13,20 +13,20 @@ interface AppContextProviderProps {
   children: ReactNode;
 }
 interface AppContextProps {
-  userName: string;
-  setUserName: Dispatch<SetStateAction<string>>;
+  theme: string;
+  setTheme: Dispatch<SetStateAction<string>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
-  const [userName, setUserName] = useState(() => {
-    return localStorage.getItem("[app_name]_username") || "Player 001";
-  });
+  const [theme, setTheme] = useState<string>(
+    localStorage.getItem("minesweeper_theme") || "light"
+  );
 
   return (
     <AppContext.Provider
       value={{
-        userName,
-        setUserName,
+        theme,
+        setTheme,
       }}
     >
       {children}
