@@ -16,22 +16,26 @@ export const Container = styled.main`
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 80px;
+    top: 20px;
     gap: 20px;
     h1 {
       font-size: 70px;
       font-family: Monoton;
+      color: var(--text-primary);
     }
 
     .bombIcon {
       width: 50px;
       height: 50px;
+
+      path {
+        fill: var(--text-secondary);
+      }
     }
   }
 
   .home-buttons {
     display: flex;
-    flex-direction: column;
     gap: 10px;
   }
 `;

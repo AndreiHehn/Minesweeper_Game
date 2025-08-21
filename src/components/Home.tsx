@@ -2,9 +2,19 @@ import { useTranslation } from "react-i18next";
 import { Button } from "../generic/Button";
 import { Container } from "../styles/Home";
 import BombIcon from "../assets/icons/BombIcon.svg?react";
+import { useContext } from "react";
+import { AppContext } from "../lib/context";
+import { ModalMessage } from "../generic/ModalMessage";
 
 export default function Home() {
   const { t } = useTranslation();
+  const { setShowModalSettings, resetSettings, setResetSettings, setTheme } =
+    useContext(AppContext);
+
+  function ResetDefaults() {
+    setTheme("light");
+    localStorage.setItem("minesweeper_theme", "light");
+  }
   return (
     <Container>
       <div className="app-header">
@@ -34,11 +44,26 @@ export default function Home() {
           color="blue"
           borderRadius="4px"
           width="120px"
-          functionButton={() => console.log("Settings")}
+          functionButton={() => setShowModalSettings(true)}
         >
           {t("Settings")}
         </Button>
       </div>
+      `
+      {resetSettings && (
+        <ModalMessage
+          textMessage={t("Do you want to reset the settings?")}
+          onClick1={() => setResetSettings(false)}
+          onClick2={() => (
+            ResetDefaults(),
+            setResetSettings(false),
+            setShowModalSettings(false)
+          )}
+          textButton1={t("Cancel")}
+          textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      `
     </Container>
   );
 }

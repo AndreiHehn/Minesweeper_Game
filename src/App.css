@@ -9,11 +9,23 @@ body {
 }
 
 .light-theme {
-  --background-primary: #d0d8ff;
+  --background-primary: #a7b2e6;
+  --modal-background: #d0d8ff;
+
+  --text-primary: #2f3640;
+  --text-secondary: #292929;
+
+  --app-color: #3624c0;
 }
 
 .dark-theme {
-  --background-primary: #30385f;
+  --background-primary: #050d38;
+  --modal-background: #303a6c;
+
+  --text-primary: #f4f4f5;
+  --text-secondary: #f4f4f5;
+
+  --app-color: #3624c0;
 }
 
 h1,

@@ -15,18 +15,28 @@ interface AppContextProviderProps {
 interface AppContextProps {
   theme: string;
   setTheme: Dispatch<SetStateAction<string>>;
+  showModalSettings: boolean;
+  setShowModalSettings: Dispatch<SetStateAction<boolean>>;
+  resetSettings: boolean;
+  setResetSettings: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
   const [theme, setTheme] = useState<string>(
     localStorage.getItem("minesweeper_theme") || "light"
   );
+  const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
+  const [resetSettings, setResetSettings] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
       value={{
         theme,
         setTheme,
+        showModalSettings,
+        setShowModalSettings,
+        resetSettings,
+        setResetSettings,
       }}
     >
       {children}
