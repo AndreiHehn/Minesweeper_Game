@@ -7,8 +7,13 @@ import { ModalGeneric } from "./generic/GenericModal";
 import { ModalSettings } from "./components/ModalSettings";
 
 function App() {
-  const { theme, setTheme, showModalSettings, setShowModalSettings } =
-    useContext(AppContext);
+  const {
+    theme,
+    showModalSettings,
+    setShowModalSettings,
+    settingsChanged,
+    setQuitSettings,
+  } = useContext(AppContext);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -26,7 +31,11 @@ function App() {
   }, [theme]);
 
   function VerifyModifications() {
-    setShowModalSettings(false);
+    if (settingsChanged) {
+      setQuitSettings(true);
+    } else {
+      setShowModalSettings(false);
+    }
   }
 
   return (

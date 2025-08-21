@@ -10,6 +10,8 @@ body {
 
 .light-theme {
   --background-primary: #a7b2e6;
+  --background-secondary: #7b85b7;
+  --background-tertiary: #909ace;
   --modal-background: #d0d8ff;
 
   --text-primary: #2f3640;
@@ -20,6 +22,8 @@ body {
 
 .dark-theme {
   --background-primary: #050d38;
+  --background-secondary: #0a165b;
+  --background-tertiary: #102080;
   --modal-background: #303a6c;
 
   --text-primary: #f4f4f5;

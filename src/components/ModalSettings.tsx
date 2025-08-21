@@ -1,64 +1,96 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { Container } from "../styles/ModalSettings";
 import { AppContext } from "../lib/context";
 import { Button } from "../generic/Button";
-// import { LanguageSelector } from "./LanguageSelector";
 import i18n from "../lib/language";
 import { useTranslation } from "react-i18next";
 import { RadioButton } from "../generic/RadioButton";
+import { LanguageSelector } from "./LanguageSelector";
 
 export function ModalSettings() {
-  const { setTheme, theme, setShowModalSettings, setResetSettings } =
-    useContext(AppContext);
+  const {
+    setTheme,
+    theme,
+    setShowModalSettings,
+    setResetSettings,
+    selectedLanguage,
+    setSelectedLanguage,
+    setSettingsChanged,
+  } = useContext(AppContext);
 
-  // const [localLanguage, setLocalLanguage] = useState(selectedLanguage);
+  const [localLanguage, setLocalLanguage] = useState(selectedLanguage);
   const [localTheme, setLocalTheme] = useState(theme);
 
   const { t } = useTranslation();
 
+  useEffect(() => {
+    if (localLanguage != selectedLanguage || localTheme != theme) {
+      setSettingsChanged(true);
+    } else {
+      setSettingsChanged(false);
+    }
+  }, [localLanguage, selectedLanguage, localTheme, theme]);
+
   // Saves the settings
   function SaveChanges() {
     setTheme(localTheme);
+    setSelectedLanguage(localLanguage);
 
     localStorage.setItem("minesweeper_theme", localTheme);
+    localStorage.setItem("minesweeper_language", localLanguage);
+    i18n.changeLanguage(localLanguage);
 
     setShowModalSettings(false);
   }
 
   return (
     <Container>
-      <div className="themeSelector">
-        <h3 className="themeText">{t("Theme")}:</h3>
-        <div className="radioButtons">
-          <RadioButton
-            name="themeRB"
-            text={t("Light Theme")}
-            color="var(--app-color)"
-            bgColor="var(--background-primary)"
-            value="light"
-            checked={localTheme == "light"}
-            onChange={(val) => setLocalTheme(val)}
-          ></RadioButton>
-          <RadioButton
-            name="themeRB"
-            text={t("Dark Theme")}
-            color="var(--app-color)"
-            bgColor="var(--background-primary)"
-            value="dark"
-            checked={localTheme == "dark"}
-            onChange={(val) => setLocalTheme(val)}
-          ></RadioButton>
-          <RadioButton
-            name="themeRB"
-            text={t("System Theme")}
-            color="var(--app-color)"
-            bgColor="var(--background-primary)"
-            value="system"
-            checked={localTheme == "system"}
-            onChange={(val) => setLocalTheme(val)}
-          ></RadioButton>
+      <section className="languageAndTheme">
+        <div className="sectionSeparator">
+          <h2 className="locationText">{t("Language and Theme")}</h2>
+          <hr className="sectionLine" />
         </div>
-      </div>
+        <div className="languageSelector">
+          <h3 className="languageText">{t("Language")}:</h3>
+          <LanguageSelector
+            selectedLanguage={localLanguage}
+            onSelectLanguage={setLocalLanguage}
+          />
+        </div>
+        <div className="themeSelector">
+          <h3 className="themeText">{t("Theme")}:</h3>
+          <div className="radioButtons">
+            <RadioButton
+              name="themeRB"
+              text={t("Light Theme")}
+              color="var(--app-color)"
+              bgColor="var(--background-primary)"
+              value="light"
+              checked={localTheme == "light"}
+              onChange={(val) => setLocalTheme(val)}
+            ></RadioButton>
+            <RadioButton
+              name="themeRB"
+              text={t("Dark Theme")}
+              color="var(--app-color)"
+              bgColor="var(--background-primary)"
+              value="dark"
+              checked={localTheme == "dark"}
+              onChange={(val) => setLocalTheme(val)}
+            ></RadioButton>
+            <RadioButton
+              name="themeRB"
+              text={t("System Theme")}
+              color="var(--app-color)"
+              bgColor="var(--background-primary)"
+              value="system"
+              checked={localTheme == "system"}
+              onChange={(val) => setLocalTheme(val)}
+            ></RadioButton>
+          </div>
+        </div>
+      </section>
       <footer className="footer-buttons">
         <Button
           color="gray"

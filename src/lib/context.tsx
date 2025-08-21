@@ -15,28 +15,45 @@ interface AppContextProviderProps {
 interface AppContextProps {
   theme: string;
   setTheme: Dispatch<SetStateAction<string>>;
+  selectedLanguage: string;
+  setSelectedLanguage: Dispatch<SetStateAction<string>>;
   showModalSettings: boolean;
   setShowModalSettings: Dispatch<SetStateAction<boolean>>;
   resetSettings: boolean;
   setResetSettings: Dispatch<SetStateAction<boolean>>;
+  settingsChanged: boolean;
+  setSettingsChanged: Dispatch<SetStateAction<boolean>>;
+  quitSettings: boolean;
+  setQuitSettings: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
   const [theme, setTheme] = useState<string>(
     localStorage.getItem("minesweeper_theme") || "light"
   );
+  const [selectedLanguage, setSelectedLanguage] = useState(() => {
+    return localStorage.getItem("minesweeper_language") || "en";
+  });
   const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
   const [resetSettings, setResetSettings] = useState<boolean>(false);
+  const [settingsChanged, setSettingsChanged] = useState<boolean>(false);
+  const [quitSettings, setQuitSettings] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
       value={{
         theme,
         setTheme,
+        selectedLanguage,
+        setSelectedLanguage,
         showModalSettings,
         setShowModalSettings,
         resetSettings,
         setResetSettings,
+        settingsChanged,
+        setSettingsChanged,
+        quitSettings,
+        setQuitSettings,
       }}
     >
       {children}

@@ -1,5 +1,17 @@
 {
+  "Cancel": "Cancelar",
+  "Dark Theme": "Tema Oscuro",
+  "Do you want to reset the settings?": "¿Quieres redefinir las configuraciónes?",
+  "Do you want to quit without saving?": "¿Quieres salir sin guardar?",
   "How to Play": "Como Jugar",
+  "Language": "Idioma",
+  "Language and Theme": "Idioma y Tema",
+  "Light Theme": "Tema Claro",
+  "Reset": "Redefinir",
+  "Save": "Guardar",
   "Settings": "Configuraciónes",
-  "Start Game": "Empezar Juego"
+  "Start Game": "Empezar Juego",
+  "System Theme": "Tema del Sistema",
+  "Theme": "Tema",
+  "Yes": "Si"
 }
