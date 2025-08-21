@@ -56,6 +56,14 @@ export default function Home() {
           color="blue"
           borderRadius="4px"
           width="130px"
+          functionButton={() => console.log("Stats")}
+        >
+          {t("Game Stats")}
+        </Button>
+        <Button
+          color="gray"
+          borderRadius="4px"
+          width="130px"
           functionButton={() => setShowModalSettings(true)}
         >
           {t("Settings")}
