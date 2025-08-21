@@ -37,5 +37,6 @@ export const Container = styled.main`
   .home-buttons {
     display: flex;
     gap: 10px;
+    height: 40px;
   }
 `;
