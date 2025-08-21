@@ -81,7 +81,7 @@ export function ModalSettings() {
               color="var(--app-color)"
               bgColor="var(--background-primary)"
               value="hard"
-              checked={localTheme == "hard"}
+              checked={localDifficulty == "hard"}
               onChange={(val) => setLocalDifficulty(val)}
             ></RadioButton>
           </div>
