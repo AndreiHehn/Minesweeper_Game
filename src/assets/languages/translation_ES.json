@@ -1,18 +1,26 @@
 {
   "Cancel": "Cancelar",
   "Dark Theme": "Tema Oscuro",
+  "Difficulty": "Dificuldad",
   "Do you want to reset the settings?": "¿Quieres redefinir las configuraciónes?",
   "Do you want to quit without saving?": "¿Quieres salir sin guardar?",
+  "Easy": "Facil",
+  "Game Options": "Opcciones de Juego",
   "Game Stats": "Estatísticas",
+  "Hard": "Dificil",
   "How to Play": "Como Jugar",
   "Language": "Idioma",
   "Language and Theme": "Idioma y Tema",
   "Light Theme": "Tema Claro",
+  "Medium": "Intermedio",
   "Reset": "Redefinir",
   "Save": "Guardar",
   "Settings": "Configuraciónes",
   "Start Game": "Empezar Juego",
   "System Theme": "Tema del Sistema",
   "Theme": "Tema",
-  "Yes": "Si"
+  "Yes": "Si",
+  "9x9 Grid, 10 Mines": "Campo 9x9, 10 Minas",
+  "16x16 Grid, 40 Mines": "Campo 16x16, 40 Minas",
+  "16x31 Grid, 99 Mines": "Campo 16x31, 99 Minas"
 }
