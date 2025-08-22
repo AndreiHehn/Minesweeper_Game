@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "../generic/Button";
 import { Container } from "../styles/Home";
-import BombIcon from "../assets/icons/BombIcon.svg?react";
+import MineIcon from "../assets/icons/MineIcon.png";
 import { useContext } from "react";
 import { AppContext } from "../lib/context";
 import { ModalMessage } from "../generic/ModalMessage";
@@ -33,10 +33,10 @@ export default function Home() {
   return (
     <Container>
       <div className="app-header">
-        <BombIcon className="bombIcon"></BombIcon>
+        <img src={MineIcon} alt="Mine" className="mineIcon" />
         <h1 className="app-title">REACT</h1>
         <h1 className="app-title">MINESWEEPER</h1>
-        <BombIcon className="bombIcon"></BombIcon>
+        <img src={MineIcon} alt="Mine" className="mineIcon" />
       </div>
       <div className="home-buttons">
         <Button

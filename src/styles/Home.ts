@@ -24,13 +24,9 @@ export const Container = styled.main`
       color: var(--text-primary);
     }
 
-    .bombIcon {
-      width: 50px;
-      height: 50px;
-
-      path {
-        fill: var(--text-secondary);
-      }
+    .mineIcon {
+      width: 100px;
+      height: 100px;
     }
   }
 
