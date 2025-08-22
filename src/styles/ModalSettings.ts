@@ -20,6 +20,12 @@ export const Container = styled.div`
     border: none;
     border-top: 1px solid var(--app-color);
   }
+
+  .rb-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   .languageAndTheme {
     margin-top: 20px;
   }

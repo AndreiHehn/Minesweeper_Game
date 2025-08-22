@@ -17,13 +17,16 @@ export default function Home() {
     setSelectedLanguage,
     quitSettings,
     setQuitSettings,
+    setSelectedDifficulty,
   } = useContext(AppContext);
 
   function ResetDefaults() {
     setTheme("light");
     setSelectedLanguage("en");
+    setSelectedDifficulty("easy");
     localStorage.setItem("minesweeper_theme", "light");
     localStorage.setItem("minesweeper_language", "en");
+    localStorage.setItem("minesweeper_difficulty", "easy");
 
     i18n.changeLanguage("en");
   }

@@ -7,6 +7,7 @@ import i18n from "../lib/language";
 import { useTranslation } from "react-i18next";
 import { RadioButton } from "../generic/RadioButton";
 import { LanguageSelector } from "./LanguageSelector";
+import ToolTip from "../generic/ToolTip";
 
 export function ModalSettings() {
   const {
@@ -28,20 +29,33 @@ export function ModalSettings() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (localLanguage != selectedLanguage || localTheme != theme) {
+    if (
+      localLanguage != selectedLanguage ||
+      localTheme != theme ||
+      localDifficulty != selectedDifficulty
+    ) {
       setSettingsChanged(true);
     } else {
       setSettingsChanged(false);
     }
-  }, [localLanguage, selectedLanguage, localTheme, theme]);
+  }, [
+    localLanguage,
+    selectedLanguage,
+    localTheme,
+    theme,
+    localDifficulty,
+    selectedDifficulty,
+  ]);
 
   // Saves the settings
   function SaveChanges() {
     setTheme(localTheme);
     setSelectedLanguage(localLanguage);
+    setSelectedDifficulty(localDifficulty);
 
     localStorage.setItem("minesweeper_theme", localTheme);
     localStorage.setItem("minesweeper_language", localLanguage);
+    localStorage.setItem("minesweeper_difficulty", localDifficulty);
     i18n.changeLanguage(localLanguage);
 
     setShowModalSettings(false);
@@ -57,33 +71,66 @@ export function ModalSettings() {
         <div className="difficultySelector">
           <h3 className="difficultyText">{t("Difficulty")}:</h3>
           <div className="radioButtons">
-            <RadioButton
-              name="difficultyRB"
-              text={t("Easy")}
-              color="var(--app-color)"
-              bgColor="var(--background-primary)"
-              value="easy"
-              checked={localDifficulty == "easy"}
-              onChange={(val) => setLocalDifficulty(val)}
-            ></RadioButton>
-            <RadioButton
-              name="difficultyRB"
-              text={t("Medium")}
-              color="var(--app-color)"
-              bgColor="var(--background-primary)"
-              value="medium"
-              checked={localDifficulty == "medium"}
-              onChange={(val) => setLocalDifficulty(val)}
-            ></RadioButton>
-            <RadioButton
-              name="difficultyRB"
-              text={t("Hard")}
-              color="var(--app-color)"
-              bgColor="var(--background-primary)"
-              value="hard"
-              checked={localDifficulty == "hard"}
-              onChange={(val) => setLocalDifficulty(val)}
-            ></RadioButton>
+            <div className="rb-item">
+              <RadioButton
+                name="difficultyRB"
+                text={t("Easy")}
+                color="var(--app-color)"
+                bgColor="var(--background-primary)"
+                value="easy"
+                checked={localDifficulty == "easy"}
+                onChange={(val) => setLocalDifficulty(val)}
+              ></RadioButton>
+              <ToolTip
+                iconColor="var(--text-primary)"
+                iconSize="12px"
+                message={t("9x9 Grid, 10 Mines")}
+                boxColor="var(--background-tertiary)"
+                boxPosition="right"
+                borderRadius="2px"
+                fontSize="10px"
+              ></ToolTip>
+            </div>
+            <div className="rb-item">
+              <RadioButton
+                name="difficultyRB"
+                text={t("Medium")}
+                color="var(--app-color)"
+                bgColor="var(--background-primary)"
+                value="medium"
+                checked={localDifficulty == "medium"}
+                onChange={(val) => setLocalDifficulty(val)}
+              ></RadioButton>
+              <ToolTip
+                iconColor="var(--text-primary)"
+                iconSize="12px"
+                message={t("16x16 Grid, 40 Mines")}
+                boxColor="var(--background-tertiary)"
+                boxPosition="right"
+                borderRadius="2px"
+                fontSize="10px"
+              ></ToolTip>
+            </div>
+            <div className="rb-item">
+              <RadioButton
+                name="difficultyRB"
+                text={t("Hard")}
+                color="var(--app-color)"
+                bgColor="var(--background-primary)"
+                value="hard"
+                checked={localDifficulty == "hard"}
+                onChange={(val) => setLocalDifficulty(val)}
+              ></RadioButton>
+              <ToolTip
+                iconColor="var(--text-primary)"
+                iconSize="12px"
+                message={t("16x31 Grid, 99 Mines")}
+                boxColor="var(--background-tertiary)"
+                boxPosition="right"
+                borderRadius="2px"
+                fontSize="10px"
+              ></ToolTip>
+            </div>
           </div>
         </div>
       </section>
