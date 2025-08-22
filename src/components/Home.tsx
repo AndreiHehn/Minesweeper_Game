@@ -10,6 +10,7 @@ import i18n from "../lib/language";
 export default function Home() {
   const { t } = useTranslation();
   const {
+    username,
     setUsername,
     setShowModalSettings,
     resetSettings,
@@ -42,6 +43,11 @@ export default function Home() {
         <h1 className="app-title">REACT</h1>
         <h1 className="app-title">MINESWEEPER</h1>
         <img src={MineIcon} alt="Mine" className="mineIcon" />
+      </div>
+      <div className="welcomeContainer">
+        <h2 className="welcomeText">
+          {t("Welcome")}, <span className="username">{username}</span>
+        </h2>
       </div>
       <div className="home-buttons">
         <Button

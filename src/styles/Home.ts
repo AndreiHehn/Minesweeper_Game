@@ -30,6 +30,21 @@ export const Container = styled.main`
     }
   }
 
+  .welcomeContainer {
+    margin-bottom: 20px;
+    .welcomeText,
+    .username {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .username {
+      font-weight: 700;
+      color: var(--app-color);
+    }
+  }
+
   .home-buttons {
     display: flex;
     gap: 10px;
