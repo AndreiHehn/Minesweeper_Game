@@ -9,6 +9,7 @@
   "Game Stats": "Game Stats",
   "Hard": "Hard",
   "How to Play": "How to Play",
+  "Insert your username": "Insert your username",
   "Language": "Language",
   "Language and Theme": "Language and Theme",
   "Light Theme": "Light Theme",
@@ -19,7 +20,10 @@
   "Start Game": "Start Game",
   "System Theme": "System Theme",
   "Theme": "Theme",
+  "User Name": "User Name",
+  "User Options": "User Options",
   "Yes": "Yes",
+  "Your username cannot be empty!": "Your username cannot be empty!",
   "9x9 Grid, 10 Mines": "9x9 Grid, 10 Mines",
   "16x16 Grid, 40 Mines": "16x16 Grid, 40 Mines",
   "16x31 Grid, 99 Mines": "16x31 Grid, 99 Mines"

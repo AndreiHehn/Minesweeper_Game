@@ -95,7 +95,7 @@ export function ModalSettings() {
             maxLenght={20}
             onChange={(e) => setLocalUserName(e.target.value)}
             defaultValue={username}
-            placeholder="Insert your username"
+            placeholder={t("Insert your username")}
           ></InputText>
         </div>
       </section>

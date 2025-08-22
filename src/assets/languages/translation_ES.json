@@ -9,6 +9,7 @@
   "Game Stats": "Estatísticas",
   "Hard": "Dificil",
   "How to Play": "Como Jugar",
+  "Insert your username": "Insira su usuário",
   "Language": "Idioma",
   "Language and Theme": "Idioma y Tema",
   "Light Theme": "Tema Claro",
@@ -19,7 +20,10 @@
   "Start Game": "Empezar Juego",
   "System Theme": "Tema del Sistema",
   "Theme": "Tema",
+  "User Name": "Nombre de Usuário",
+  "User Options": "Opcciones de Usuário",
   "Yes": "Si",
+  "Your username cannot be empty!": "¡Su nombre de usuário no puede estar vacío!",
   "9x9 Grid, 10 Mines": "Campo 9x9, 10 Minas",
   "16x16 Grid, 40 Mines": "Campo 16x16, 40 Minas",
   "16x31 Grid, 99 Mines": "Campo 16x31, 99 Minas"
