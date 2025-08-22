@@ -18,6 +18,7 @@ export const Container = styled.main`
     position: absolute;
     top: 20px;
     gap: 20px;
+    user-select: none;
     h1 {
       font-size: 70px;
       font-family: Monoton;
@@ -30,8 +31,44 @@ export const Container = styled.main`
     }
   }
 
-  .welcomeContainer {
+  .subheader {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .avatarContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid var(--app-color);
+      background-color: white;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .changeAvatarText {
+      margin: 10px 0 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+        color: var(--app-color);
+      }
+    }
+
     .welcomeText,
     .username {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

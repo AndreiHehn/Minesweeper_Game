@@ -44,7 +44,11 @@ export default function Home() {
         <h1 className="app-title">MINESWEEPER</h1>
         <img src={MineIcon} alt="Mine" className="mineIcon" />
       </div>
-      <div className="welcomeContainer">
+      <div className="subheader">
+        <div className="avatarContainer">
+          <img src="" alt="" className="avatar" />
+          <h3 className="changeAvatarText">{t("Change Avatar")}</h3>
+        </div>
         <h2 className="welcomeText">
           {t("Welcome")}, <span className="username">{username}</span>
         </h2>
