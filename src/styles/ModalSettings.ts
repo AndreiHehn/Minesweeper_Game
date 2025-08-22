@@ -21,6 +21,20 @@ export const Container = styled.div`
     border-top: 1px solid var(--app-color);
   }
 
+  .userName {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+
+  .userNameText {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    margin-right: 10px;
+  }
+
   .rb-item {
     display: flex;
     align-items: center;

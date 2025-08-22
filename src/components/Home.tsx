@@ -10,6 +10,7 @@ import i18n from "../lib/language";
 export default function Home() {
   const { t } = useTranslation();
   const {
+    setUsername,
     setShowModalSettings,
     resetSettings,
     setResetSettings,
@@ -18,12 +19,16 @@ export default function Home() {
     quitSettings,
     setQuitSettings,
     setSelectedDifficulty,
+    emptyUsername,
+    setEmptyUsername,
   } = useContext(AppContext);
 
   function ResetDefaults() {
+    setUsername("Player 001");
     setTheme("light");
     setSelectedLanguage("en");
     setSelectedDifficulty("easy");
+    localStorage.setItem("minesweeper_username", "Player 001");
     localStorage.setItem("minesweeper_theme", "light");
     localStorage.setItem("minesweeper_language", "en");
     localStorage.setItem("minesweeper_difficulty", "easy");
@@ -93,6 +98,13 @@ export default function Home() {
           )}
           textButton1={t("Cancel")}
           textButton2={t("Yes")}
+        ></ModalMessage>
+      )}
+      {emptyUsername && (
+        <ModalMessage
+          textMessage={t("Your username cannot be empty!")}
+          onClick1={() => setEmptyUsername(false)}
+          textButton1={t("OK")}
         ></ModalMessage>
       )}
     </Container>

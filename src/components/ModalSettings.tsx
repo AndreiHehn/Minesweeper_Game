@@ -8,9 +8,12 @@ import { useTranslation } from "react-i18next";
 import { RadioButton } from "../generic/RadioButton";
 import { LanguageSelector } from "./LanguageSelector";
 import ToolTip from "../generic/ToolTip";
+import InputText from "../generic/InputText";
 
 export function ModalSettings() {
   const {
+    username,
+    setUsername,
     setTheme,
     theme,
     setShowModalSettings,
@@ -20,8 +23,10 @@ export function ModalSettings() {
     selectedDifficulty,
     setSelectedDifficulty,
     setSettingsChanged,
+    setEmptyUsername,
   } = useContext(AppContext);
 
+  const [localUsername, setLocalUserName] = useState(username);
   const [localLanguage, setLocalLanguage] = useState(selectedLanguage);
   const [localTheme, setLocalTheme] = useState(theme);
   const [localDifficulty, setLocalDifficulty] = useState(selectedDifficulty);
@@ -30,6 +35,7 @@ export function ModalSettings() {
 
   useEffect(() => {
     if (
+      localUsername != username ||
       localLanguage != selectedLanguage ||
       localTheme != theme ||
       localDifficulty != selectedDifficulty
@@ -39,6 +45,8 @@ export function ModalSettings() {
       setSettingsChanged(false);
     }
   }, [
+    localUsername,
+    username,
     localLanguage,
     selectedLanguage,
     localTheme,
@@ -49,20 +57,48 @@ export function ModalSettings() {
 
   // Saves the settings
   function SaveChanges() {
-    setTheme(localTheme);
-    setSelectedLanguage(localLanguage);
-    setSelectedDifficulty(localDifficulty);
+    if (localUsername != "") {
+      setUsername(localUsername);
+      setTheme(localTheme);
+      setSelectedLanguage(localLanguage);
+      setSelectedDifficulty(localDifficulty);
 
-    localStorage.setItem("minesweeper_theme", localTheme);
-    localStorage.setItem("minesweeper_language", localLanguage);
-    localStorage.setItem("minesweeper_difficulty", localDifficulty);
-    i18n.changeLanguage(localLanguage);
+      localStorage.setItem("minesweeper_username", localUsername);
+      localStorage.setItem("minesweeper_theme", localTheme);
+      localStorage.setItem("minesweeper_language", localLanguage);
+      localStorage.setItem("minesweeper_difficulty", localDifficulty);
+      i18n.changeLanguage(localLanguage);
 
-    setShowModalSettings(false);
+      setShowModalSettings(false);
+    } else {
+      setEmptyUsername(true);
+    }
   }
 
   return (
     <Container>
+      <section className="userOptions">
+        <div className="sectionSeparator">
+          <h2 className="locationText">{t("User Options")}</h2>
+          <hr className="sectionLine" />
+        </div>
+        <div className="userName">
+          <h3 className="userNameText">{t("User Name")}:</h3>
+          <InputText
+            backgroundColor="var(--background-primary)"
+            borderColor="#71717A"
+            borderRadius="4px"
+            height="25px"
+            width="160px"
+            fontSize="14px"
+            fontColor="var(--text-primary)"
+            maxLenght={20}
+            onChange={(e) => setLocalUserName(e.target.value)}
+            defaultValue={username}
+            placeholder="Insert your username"
+          ></InputText>
+        </div>
+      </section>
       <section className="gameOptions">
         <div className="sectionSeparator">
           <h2 className="locationText">{t("Game Options")}</h2>

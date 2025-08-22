@@ -13,6 +13,8 @@ interface AppContextProviderProps {
   children: ReactNode;
 }
 interface AppContextProps {
+  username: string;
+  setUsername: Dispatch<SetStateAction<string>>;
   theme: string;
   setTheme: Dispatch<SetStateAction<string>>;
   selectedLanguage: string;
@@ -27,9 +29,14 @@ interface AppContextProps {
   setSettingsChanged: Dispatch<SetStateAction<boolean>>;
   quitSettings: boolean;
   setQuitSettings: Dispatch<SetStateAction<boolean>>;
+  emptyUsername: boolean;
+  setEmptyUsername: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
+  const [username, setUsername] = useState<string>(
+    localStorage.getItem("minesweeper_username") || "Player 001"
+  );
   const [theme, setTheme] = useState<string>(
     localStorage.getItem("minesweeper_theme") || "light"
   );
@@ -43,10 +50,13 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [resetSettings, setResetSettings] = useState<boolean>(false);
   const [settingsChanged, setSettingsChanged] = useState<boolean>(false);
   const [quitSettings, setQuitSettings] = useState<boolean>(false);
+  const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
       value={{
+        username,
+        setUsername,
         theme,
         setTheme,
         selectedLanguage,
@@ -61,6 +71,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setSettingsChanged,
         quitSettings,
         setQuitSettings,
+        emptyUsername,
+        setEmptyUsername,
       }}
     >
       {children}
