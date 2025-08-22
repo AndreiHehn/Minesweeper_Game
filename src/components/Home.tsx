@@ -72,7 +72,7 @@ export default function Home() {
           {t("Settings")}
         </Button>
       </div>
-      `
+
       {quitSettings && (
         <ModalMessage
           textMessage={t("Do you want to quit without saving?")}
@@ -95,7 +95,6 @@ export default function Home() {
           textButton2={t("Yes")}
         ></ModalMessage>
       )}
-      `
     </Container>
   );
 }
