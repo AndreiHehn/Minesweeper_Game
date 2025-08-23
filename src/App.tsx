@@ -5,14 +5,19 @@ import { AppContext } from "./lib/context";
 import { useTranslation } from "react-i18next";
 import { ModalGeneric } from "./generic/GenericModal";
 import { ModalSettings } from "./components/ModalSettings";
+import ModalAvatar from "./components/ModalAvatar";
 
 function App() {
   const {
     theme,
+    showModalAvatar,
+    setShowModalAvatar,
     showModalSettings,
     setShowModalSettings,
     settingsChanged,
+    avatarChanged,
     setQuitSettings,
+    setQuitAvatar,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -30,7 +35,7 @@ function App() {
     }
   }, [theme]);
 
-  function VerifyModifications() {
+  function VerifySettings() {
     if (settingsChanged) {
       setQuitSettings(true);
     } else {
@@ -38,12 +43,32 @@ function App() {
     }
   }
 
+  function VerifyAvatar() {
+    if (avatarChanged) {
+      setQuitAvatar(true);
+    } else {
+      setShowModalAvatar(false);
+    }
+  }
+
   return (
     <>
       <Home></Home>
+      {showModalAvatar && (
+        <ModalGeneric
+          functionCloseModal={VerifyAvatar}
+          mobileFullScreen
+          top="50%"
+          left="50%"
+          title={t("Select your Avatar")}
+          width="400px"
+        >
+          <ModalAvatar />
+        </ModalGeneric>
+      )}
       {showModalSettings && (
         <ModalGeneric
-          functionCloseModal={VerifyModifications}
+          functionCloseModal={VerifySettings}
           mobileFullScreen
           top="50%"
           left="50%"

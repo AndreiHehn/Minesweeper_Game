@@ -22,6 +22,10 @@ export default function Home() {
     setSelectedDifficulty,
     emptyUsername,
     setEmptyUsername,
+    setShowModalAvatar,
+    selectedAvatar,
+    quitAvatar,
+    setQuitAvatar,
   } = useContext(AppContext);
 
   function ResetDefaults() {
@@ -46,8 +50,18 @@ export default function Home() {
       </div>
       <div className="subheader">
         <div className="avatarContainer">
-          <img src="" alt="" className="avatar" />
-          <h3 className="changeAvatarText">{t("Change Avatar")}</h3>
+          <img
+            src={selectedAvatar}
+            alt="User Avatar"
+            className="avatar"
+            onClick={() => setShowModalAvatar(true)}
+          />
+          <h3
+            className="changeAvatarText"
+            onClick={() => setShowModalAvatar(true)}
+          >
+            {t("Change Avatar")}
+          </h3>
         </div>
         <h2 className="welcomeText">
           {t("Welcome")}, <span className="username">{username}</span>
@@ -95,6 +109,15 @@ export default function Home() {
           onClick1={() => setQuitSettings(false)}
           textButton2={t("Yes")}
           onClick2={() => (setQuitSettings(false), setShowModalSettings(false))}
+        />
+      )}
+      {quitAvatar && (
+        <ModalMessage
+          textMessage={t("Do you want to quit without saving?")}
+          textButton1={t("Cancel")}
+          onClick1={() => setQuitAvatar(false)}
+          textButton2={t("Yes")}
+          onClick2={() => (setQuitAvatar(false), setShowModalAvatar(false))}
         />
       )}
       {resetSettings && (

@@ -21,14 +21,22 @@ interface AppContextProps {
   setSelectedLanguage: Dispatch<SetStateAction<string>>;
   selectedDifficulty: string;
   setSelectedDifficulty: Dispatch<SetStateAction<string>>;
+  selectedAvatar: string;
+  setSelectedAvatar: Dispatch<SetStateAction<string>>;
   showModalSettings: boolean;
   setShowModalSettings: Dispatch<SetStateAction<boolean>>;
+  showModalAvatar: boolean;
+  setShowModalAvatar: Dispatch<SetStateAction<boolean>>;
   resetSettings: boolean;
   setResetSettings: Dispatch<SetStateAction<boolean>>;
   settingsChanged: boolean;
   setSettingsChanged: Dispatch<SetStateAction<boolean>>;
   quitSettings: boolean;
   setQuitSettings: Dispatch<SetStateAction<boolean>>;
+  avatarChanged: boolean;
+  setAvatarChanged: Dispatch<SetStateAction<boolean>>;
+  quitAvatar: boolean;
+  setQuitAvatar: Dispatch<SetStateAction<boolean>>;
   emptyUsername: boolean;
   setEmptyUsername: Dispatch<SetStateAction<boolean>>;
 }
@@ -46,10 +54,16 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [selectedDifficulty, setSelectedDifficulty] = useState(() => {
     return localStorage.getItem("minesweeper_difficulty") || "easy";
   });
+  const [selectedAvatar, setSelectedAvatar] = useState<string>(
+    localStorage.getItem("minesweeper_avatar") || ""
+  );
   const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
+  const [showModalAvatar, setShowModalAvatar] = useState<boolean>(false);
   const [resetSettings, setResetSettings] = useState<boolean>(false);
   const [settingsChanged, setSettingsChanged] = useState<boolean>(false);
   const [quitSettings, setQuitSettings] = useState<boolean>(false);
+  const [avatarChanged, setAvatarChanged] = useState<boolean>(false);
+  const [quitAvatar, setQuitAvatar] = useState<boolean>(false);
   const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
 
   return (
@@ -63,14 +77,22 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setSelectedLanguage,
         selectedDifficulty,
         setSelectedDifficulty,
+        selectedAvatar,
+        setSelectedAvatar,
         showModalSettings,
         setShowModalSettings,
+        showModalAvatar,
+        setShowModalAvatar,
         resetSettings,
         setResetSettings,
         settingsChanged,
         setSettingsChanged,
         quitSettings,
         setQuitSettings,
+        avatarChanged,
+        setAvatarChanged,
+        quitAvatar,
+        setQuitAvatar,
         emptyUsername,
         setEmptyUsername,
       }}
