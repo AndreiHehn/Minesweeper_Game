@@ -1,19 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  user-select: none;
   .recharts-legend-wrapper {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 12px;
   }
 
-  svg path:focus {
-    outline: none;
-  }
-
-  .recharts-wrapper {
-    path:focus {
-      outline: none;
-    }
+  .recharts-pie *,
+  .recharts-wrapper svg {
+    outline: none !important;
   }
 
   .recharts-surface {
