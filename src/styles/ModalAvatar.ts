@@ -7,10 +7,10 @@ export const Container = styled.div`
   margin-top: 20px;
 
   .avatar-wrapper {
-    display: flex !important;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
+    border: none;
   }
 
   .avatar-item {
