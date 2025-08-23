@@ -27,6 +27,8 @@ interface AppContextProps {
   setShowModalSettings: Dispatch<SetStateAction<boolean>>;
   showModalAvatar: boolean;
   setShowModalAvatar: Dispatch<SetStateAction<boolean>>;
+  showModalStatistics: boolean;
+  setShowModalStatistics: Dispatch<SetStateAction<boolean>>;
   resetSettings: boolean;
   setResetSettings: Dispatch<SetStateAction<boolean>>;
   settingsChanged: boolean;
@@ -59,6 +61,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   );
   const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
   const [showModalAvatar, setShowModalAvatar] = useState<boolean>(false);
+  const [showModalStatistics, setShowModalStatistics] =
+    useState<boolean>(false);
   const [resetSettings, setResetSettings] = useState<boolean>(false);
   const [settingsChanged, setSettingsChanged] = useState<boolean>(false);
   const [quitSettings, setQuitSettings] = useState<boolean>(false);
@@ -83,6 +87,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setShowModalSettings,
         showModalAvatar,
         setShowModalAvatar,
+        showModalStatistics,
+        setShowModalStatistics,
         resetSettings,
         setResetSettings,
         settingsChanged,

@@ -26,6 +26,7 @@ export default function Home() {
     selectedAvatar,
     quitAvatar,
     setQuitAvatar,
+    setShowModalStatistics,
   } = useContext(AppContext);
 
   function ResetDefaults() {
@@ -88,7 +89,7 @@ export default function Home() {
           color="blue"
           borderRadius="4px"
           width="130px"
-          functionButton={() => console.log("Stats")}
+          functionButton={() => setShowModalStatistics(true)}
         >
           {t("Game Stats")}
         </Button>

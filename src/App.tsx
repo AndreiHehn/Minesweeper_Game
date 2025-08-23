@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ModalGeneric } from "./generic/GenericModal";
 import { ModalSettings } from "./components/ModalSettings";
 import ModalAvatar from "./components/ModalAvatar";
+import ModalStatistics from "./components/ModalStatistics";
 
 function App() {
   const {
@@ -18,6 +19,8 @@ function App() {
     avatarChanged,
     setQuitSettings,
     setQuitAvatar,
+    showModalStatistics,
+    setShowModalStatistics,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -64,6 +67,18 @@ function App() {
           width="400px"
         >
           <ModalAvatar />
+        </ModalGeneric>
+      )}
+      {showModalStatistics && (
+        <ModalGeneric
+          functionCloseModal={() => setShowModalStatistics(false)}
+          mobileFullScreen
+          top="50%"
+          left="50%"
+          title={t("Game Stats")}
+          width="400px"
+        >
+          <ModalStatistics />
         </ModalGeneric>
       )}
       {showModalSettings && (
