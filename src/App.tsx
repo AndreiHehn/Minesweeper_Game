@@ -76,7 +76,6 @@ function App() {
           top="50%"
           left="50%"
           title={t("Game Stats")}
-          width="400px"
         >
           <ModalStatistics />
         </ModalGeneric>

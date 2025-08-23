@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: fit-content;
+  width: auto;
   height: fit-content;
   .charts {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     margin-top: 20px;
   }
 
@@ -14,10 +13,18 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    h2 {
+
+    .chartTitle {
       font-size: 16px;
       color: var(--text-primary);
       margin-bottom: -4px;
+    }
+
+    .chartBest {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-top: 4px;
     }
   }
 `;

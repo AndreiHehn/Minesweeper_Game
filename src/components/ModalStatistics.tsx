@@ -16,10 +16,9 @@ export default function ModalStatistics() {
     { name: "Vitórias", value: 3 },
     { name: "Derrotas", value: 5 },
   ];
-  const totalData = [
-    { name: "Vitórias", value: 37 },
-    { name: "Derrotas", value: 14 },
-  ];
+  const easyBest = "00:00";
+  const mediumBest = "00:00";
+  const hardBest = "00:00";
 
   const colors = ["#029715", "#a62222"];
   return (
@@ -27,6 +26,9 @@ export default function ModalStatistics() {
       <section className="charts">
         <div className="chart">
           <h2 className="chartTitle">{t("Easy")}</h2>
+          <h3 className="chartBest">
+            {t("Best Time")}: {easyBest}
+          </h3>
           <GenericPieChart
             data={easyData}
             dataColors={colors}
@@ -37,13 +39,16 @@ export default function ModalStatistics() {
               ).toString() + "%"
             }
             displayTooltip={true}
-            width={150}
-            height={150}
+            width={170}
+            height={170}
           ></GenericPieChart>
         </div>
 
         <div className="chart">
           <h2 className="chartTitle">{t("Medium")}</h2>
+          <h3 className="chartBest">
+            {t("Best Time")}: {mediumBest}
+          </h3>
           <GenericPieChart
             data={mediumData}
             dataColors={colors}
@@ -55,12 +60,15 @@ export default function ModalStatistics() {
               ).toString() + "%"
             }
             displayTooltip={true}
-            width={150}
-            height={150}
+            width={170}
+            height={170}
           ></GenericPieChart>
         </div>
         <div className="chart">
           <h2 className="chartTitle">{t("Hard")}</h2>
+          <h3 className="chartBest">
+            {t("Best Time")}: {hardBest}
+          </h3>
           <GenericPieChart
             data={hardData}
             dataColors={colors}
@@ -71,25 +79,8 @@ export default function ModalStatistics() {
               ).toString() + "%"
             }
             displayTooltip={true}
-            width={150}
-            height={150}
-          ></GenericPieChart>
-        </div>
-        <div className="chart">
-          <h2 className="chartTitle">{t("Total")}</h2>
-          <GenericPieChart
-            data={totalData}
-            dataColors={colors}
-            centerData={
-              Math.round(
-                (totalData[0].value /
-                  (totalData[0].value + totalData[1].value)) *
-                  100
-              ).toString() + "%"
-            }
-            displayTooltip={true}
-            width={150}
-            height={150}
+            width={170}
+            height={170}
           ></GenericPieChart>
         </div>
       </section>
