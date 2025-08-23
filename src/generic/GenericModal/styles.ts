@@ -12,13 +12,22 @@ export interface Props {
   $left?: string;
 }
 
+export const OutSideClick = styled.div`
+  width: 100dvw;
+  height: 100dvh;
+  top: 0;
+  right: 0;
+  position: absolute;
+  z-index: 10;
+`;
+
 export const Container = styled.div<Props>`
   background-color: var(--modal-background);
   padding: 10px;
   display: flex;
   flex-direction: column;
   border-radius: 6px;
-  z-index: 2;
+  z-index: 11;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
   position: absolute;
   transform: translate(-50%, -50%);

@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container, OutSideClick } from "./styles";
 import CloseIcon from "../../assets/icons/CloseIcon.svg?react";
 import type { ReactNode } from "react";
 
@@ -34,6 +34,7 @@ export function ModalGeneric({
 }: Props) {
   return (
     <>
+      <OutSideClick></OutSideClick>
       <Container
         $mobileFullScreen={mobileFullScreen ? mobileFullScreen : false}
         $titleFontSize={titleFontSize}

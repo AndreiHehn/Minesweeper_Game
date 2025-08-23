@@ -13,7 +13,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: end;
-  z-index: 3;
+  z-index: 12;
   .content {
     display: flex;
 
