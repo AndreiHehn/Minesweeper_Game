@@ -7,6 +7,7 @@ import { ModalGeneric } from "./generic/GenericModal";
 import { ModalSettings } from "./components/ModalSettings";
 import ModalAvatar from "./components/ModalAvatar";
 import ModalStatistics from "./components/ModalStatistics";
+import LoadingScreen from "./components/LoadingScreen";
 
 function App() {
   const {
@@ -21,6 +22,7 @@ function App() {
     setQuitAvatar,
     showModalStatistics,
     setShowModalStatistics,
+    activePage,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -56,7 +58,8 @@ function App() {
 
   return (
     <>
-      <Home></Home>
+      {activePage == "Home" && <Home></Home>}
+      {activePage == "Loading" && <LoadingScreen></LoadingScreen>}
       {showModalAvatar && (
         <ModalGeneric
           functionCloseModal={VerifyAvatar}

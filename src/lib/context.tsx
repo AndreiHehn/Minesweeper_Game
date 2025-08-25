@@ -41,6 +41,8 @@ interface AppContextProps {
   setQuitAvatar: Dispatch<SetStateAction<boolean>>;
   emptyUsername: boolean;
   setEmptyUsername: Dispatch<SetStateAction<boolean>>;
+  activePage: string;
+  setActivePage: Dispatch<SetStateAction<string>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -69,6 +71,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [avatarChanged, setAvatarChanged] = useState<boolean>(false);
   const [quitAvatar, setQuitAvatar] = useState<boolean>(false);
   const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
+  const [activePage, setActivePage] = useState<string>("Loading");
 
   return (
     <AppContext.Provider
@@ -101,6 +104,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setQuitAvatar,
         emptyUsername,
         setEmptyUsername,
+        activePage,
+        setActivePage,
       }}
     >
       {children}
