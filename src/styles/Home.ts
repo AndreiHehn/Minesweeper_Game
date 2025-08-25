@@ -58,7 +58,7 @@ export const Container = styled.main`
 
     .changeAvatarText {
       margin: 10px 0 20px;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-primary);
       cursor: pointer;

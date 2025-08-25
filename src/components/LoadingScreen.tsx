@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Container } from "../styles/LoadingScreen";
 import Cell from "./Cell";
@@ -30,7 +31,7 @@ export default function LoadingScreen() {
             setLoopCount((prev) => prev + 1);
           }, 500);
         }
-      }, (index + 1) * 700);
+      }, (index + 1) * 600);
     });
   }, [loopCount]);
 
