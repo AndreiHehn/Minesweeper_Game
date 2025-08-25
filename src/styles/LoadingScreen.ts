@@ -9,4 +9,21 @@ export const Container = styled.main`
   padding: 10px;
   background-color: var(--background-primary);
   overflow: hidden;
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cells {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+  }
+
+  .loadingText {
+    color: var(--text-primary);
+  }
 `;
