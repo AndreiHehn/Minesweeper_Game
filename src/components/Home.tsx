@@ -7,7 +7,11 @@ import { AppContext } from "../lib/context";
 import { ModalMessage } from "../generic/ModalMessage";
 import i18n from "../lib/language";
 
-export default function Home() {
+interface HomeProps {
+  goToPage: () => void;
+}
+
+export default function Home({ goToPage }: HomeProps) {
   const { t } = useTranslation();
   const {
     username,
@@ -73,7 +77,7 @@ export default function Home() {
           color="blue"
           borderRadius="4px"
           width="130px"
-          functionButton={() => console.log("Start")}
+          functionButton={goToPage}
         >
           {t("Start Game")}
         </Button>

@@ -71,7 +71,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [avatarChanged, setAvatarChanged] = useState<boolean>(false);
   const [quitAvatar, setQuitAvatar] = useState<boolean>(false);
   const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
-  const [activePage, setActivePage] = useState<string>("Loading");
+  const [activePage, setActivePage] = useState<string>("Home");
 
   return (
     <AppContext.Provider

@@ -37,3 +37,30 @@ h2,
 h3 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* PAGE TRANSITIONS */
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+.fade-in {
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
