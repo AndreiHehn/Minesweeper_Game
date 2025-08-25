@@ -8,6 +8,7 @@ import { ModalSettings } from "./components/ModalSettings";
 import ModalAvatar from "./components/ModalAvatar";
 import ModalStatistics from "./components/ModalStatistics";
 import LoadingScreen from "./components/LoadingScreen";
+import Game from "./components/Game";
 
 function App() {
   const {
@@ -137,7 +138,7 @@ function App() {
         </div>
       )}
 
-      {/* {activePage === "Game" && (
+      {activePage === "Game" && (
         <div
           className={
             transitionStep === "fadeOutCurrent" && targetPage === "Home"
@@ -149,7 +150,7 @@ function App() {
         >
           <Game goToPage={() => goToPageWithTransition("Home")} />
         </div>
-      )} */}
+      )}
 
       {activePage === "Loading" && (
         <div
