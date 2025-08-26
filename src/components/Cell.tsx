@@ -42,11 +42,26 @@ export default function Cell({ cellContent, enableClick }: Props) {
     if (isClickable) setClickable(false);
   };
 
+  const handleRightClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    // Se célula vazia → marca bandeira
+    if (!visibleContent) {
+      setVisibleContent("flag");
+      setClickable(false);
+    }
+    // Se já tiver bandeira → remove
+    else if (visibleContent === "flag") {
+      setVisibleContent(null);
+      setClickable(true);
+    }
+  };
+
   // Controla animação de desaparecimento
   useEffect(() => {
     if (!cellContent && visibleContent) {
       setIsExiting(true);
-      const timer = setTimeout(() => setVisibleContent(null), 400); // duração da transição
+      const timer = setTimeout(() => setVisibleContent(null), 400);
       return () => clearTimeout(timer);
     } else if (cellContent) {
       setVisibleContent(cellContent);
@@ -58,8 +73,9 @@ export default function Cell({ cellContent, enableClick }: Props) {
     <Container
       cellSize={cellSize}
       enableClick={isClickable}
-      cellContent={cellContent ?? ""}
+      cellContent={visibleContent ?? ""}
       onClick={handleClick}
+      onContextMenu={handleRightClick}
     >
       {visibleContent && (
         <img
