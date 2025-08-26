@@ -43,6 +43,8 @@ interface AppContextProps {
   setEmptyUsername: Dispatch<SetStateAction<boolean>>;
   activePage: string;
   setActivePage: Dispatch<SetStateAction<string>>;
+  loadingMessage: string;
+  setLoadingMessage: Dispatch<SetStateAction<string>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -71,7 +73,10 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [avatarChanged, setAvatarChanged] = useState<boolean>(false);
   const [quitAvatar, setQuitAvatar] = useState<boolean>(false);
   const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
-  const [activePage, setActivePage] = useState<string>("Game");
+  const [activePage, setActivePage] = useState<string>("Home");
+  const [loadingMessage, setLoadingMessage] = useState<string>(
+    "Wait, planting the mines"
+  );
 
   return (
     <AppContext.Provider
@@ -106,6 +111,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setEmptyUsername,
         activePage,
         setActivePage,
+        loadingMessage,
+        setLoadingMessage,
       }}
     >
       {children}

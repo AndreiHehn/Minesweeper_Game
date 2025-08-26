@@ -26,9 +26,9 @@ export default function Cell({ cellContent, enableClick }: Props) {
   const [isExiting, setIsExiting] = useState(false);
 
   const cellSize =
-    selectedDifficulty === "easy"
+    selectedDifficulty === "Easy"
       ? "56px"
-      : selectedDifficulty === "medium"
+      : selectedDifficulty === "Medium"
       ? "48px"
       : "32px";
 

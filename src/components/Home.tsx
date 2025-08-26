@@ -31,6 +31,7 @@ export default function Home({ goToPage }: HomeProps) {
     quitAvatar,
     setQuitAvatar,
     setShowModalStatistics,
+    setLoadingMessage,
   } = useContext(AppContext);
 
   function ResetDefaults() {
@@ -77,7 +78,9 @@ export default function Home({ goToPage }: HomeProps) {
           color="blue"
           borderRadius="4px"
           width="130px"
-          functionButton={goToPage}
+          functionButton={() => (
+            goToPage(), setLoadingMessage("Wait, planting the mines")
+          )}
         >
           {t("Start Game")}
         </Button>

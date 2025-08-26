@@ -9,7 +9,7 @@ interface GameProps {
 }
 
 export default function Game({ goToPage }: GameProps) {
-  const { selectedAvatar, username, selectedDifficulty } =
+  const { selectedAvatar, username, selectedDifficulty, setLoadingMessage } =
     useContext(AppContext);
   const { t } = useTranslation();
   const minesRemaining = 10;
@@ -37,7 +37,9 @@ export default function Game({ goToPage }: GameProps) {
         borderRadius="4px"
         width="130px"
         height="40px"
-        functionButton={goToPage}
+        functionButton={() => (
+          goToPage(), setLoadingMessage("Wait, deactivating the mines")
+        )}
       >
         {t("Back to Menu")}
       </Button>

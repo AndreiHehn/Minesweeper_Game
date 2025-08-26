@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container } from "../styles/LoadingScreen";
 import Cell from "./Cell";
 import { useTranslation } from "react-i18next";
+import { AppContext } from "../lib/context";
 
 const contents = ["1", "2", "3", "4", "flag"] as const;
 const totalLoops = 3;
@@ -13,6 +14,7 @@ export default function LoadingScreen() {
     Array(contents.length).fill(undefined)
   );
   const [loopCount, setLoopCount] = useState(0);
+  const { loadingMessage } = useContext(AppContext);
 
   useEffect(() => {
     if (loopCount >= totalLoops) return;
@@ -47,7 +49,7 @@ export default function LoadingScreen() {
             />
           ))}
         </div>
-        <h2 className="loadingText">{t("Wait, planting the mines")}...</h2>
+        <h2 className="loadingText">{t(loadingMessage)}...</h2>
       </article>
     </Container>
   );
