@@ -45,7 +45,8 @@ export default function LoadingScreen() {
             <Cell
               key={idx}
               enableClick={false}
-              cellContent={cellContent as any}
+              hiddenContent={cellContent as any}
+              loadingCell
             />
           ))}
         </div>

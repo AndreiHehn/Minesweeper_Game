@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container } from "../styles/Cell";
 import { AppContext } from "../lib/context";
 
@@ -12,18 +12,25 @@ import Img4 from "../assets/icons/04.png";
 type CellContent = "mine" | "flag" | "1" | "2" | "3" | "4";
 
 interface Props {
-  cellContent?: CellContent;
+  loadingCell?: boolean;
+  hiddenContent?: CellContent; // o que está por baixo da célula
   enableClick: boolean;
 }
 
-export default function Cell({ cellContent, enableClick }: Props) {
+export default function Cell({
+  loadingCell,
+  hiddenContent,
+  enableClick,
+}: Props) {
   const { selectedDifficulty } = useContext(AppContext);
   const [clickable, setClickable] = useState(enableClick);
 
+  // o que o jogador vê (nulo = célula fechada)
   const [visibleContent, setVisibleContent] = useState<CellContent | null>(
-    cellContent ?? null
+    null
   );
-  const [isExiting, setIsExiting] = useState(false);
+
+  const [isExiting] = useState(false);
 
   const cellSize = selectedDifficulty === "Easy" ? "56px" : "32px";
 
@@ -39,7 +46,14 @@ export default function Cell({ cellContent, enableClick }: Props) {
   const isClickable = visibleContent ? false : clickable;
 
   const handleClick = () => {
-    if (isClickable) setClickable(false);
+    if (isClickable) {
+      setClickable(false);
+      if (hiddenContent) {
+        setVisibleContent(hiddenContent); // revela mina ou número
+      } else {
+        setVisibleContent(null); // célula vazia
+      }
+    }
   };
 
   const handleRightClick = (e: React.MouseEvent) => {
@@ -58,16 +72,22 @@ export default function Cell({ cellContent, enableClick }: Props) {
   };
 
   // Controla animação de desaparecimento
+  // useEffect(() => {
+  //   if (!cellContent && visibleContent) {
+  //     setIsExiting(true);
+  //     const timer = setTimeout(() => setVisibleContent(null), 400);
+  //     return () => clearTimeout(timer);
+  //   } else if (cellContent) {
+  //     setVisibleContent(cellContent);
+  //     setIsExiting(false);
+  //   }
+  // }, [cellContent]);
+
   useEffect(() => {
-    if (!cellContent && visibleContent) {
-      setIsExiting(true);
-      const timer = setTimeout(() => setVisibleContent(null), 400);
-      return () => clearTimeout(timer);
-    } else if (cellContent) {
-      setVisibleContent(cellContent);
-      setIsExiting(false);
+    if (loadingCell) {
+      setVisibleContent(hiddenContent ?? null);
     }
-  }, [cellContent]);
+  });
 
   return (
     <Container

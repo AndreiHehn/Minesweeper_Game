@@ -41,7 +41,7 @@ export default function Field() {
         <Cell
           key={index}
           enableClick={true}
-          cellContent={minePositions.includes(index) ? "mine" : undefined}
+          hiddenContent={minePositions.includes(index) ? "mine" : undefined}
         />
       ))}
     </Container>
