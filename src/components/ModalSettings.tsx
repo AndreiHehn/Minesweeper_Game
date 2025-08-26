@@ -113,8 +113,8 @@ export function ModalSettings() {
                 text={t("Easy")}
                 color="var(--app-color)"
                 bgColor="var(--background-primary)"
-                value="easy"
-                checked={localDifficulty == "easy"}
+                value="Easy"
+                checked={localDifficulty == "Easy"}
                 onChange={(val) => setLocalDifficulty(val)}
               ></RadioButton>
               <ToolTip
@@ -133,8 +133,8 @@ export function ModalSettings() {
                 text={t("Medium")}
                 color="var(--app-color)"
                 bgColor="var(--background-primary)"
-                value="medium"
-                checked={localDifficulty == "medium"}
+                value="Medium"
+                checked={localDifficulty == "Medium"}
                 onChange={(val) => setLocalDifficulty(val)}
               ></RadioButton>
               <ToolTip
@@ -153,8 +153,8 @@ export function ModalSettings() {
                 text={t("Hard")}
                 color="var(--app-color)"
                 bgColor="var(--background-primary)"
-                value="hard"
-                checked={localDifficulty == "hard"}
+                value="Hard"
+                checked={localDifficulty == "Hard"}
                 onChange={(val) => setLocalDifficulty(val)}
               ></RadioButton>
               <ToolTip
