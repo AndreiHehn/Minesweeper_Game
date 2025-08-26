@@ -12,4 +12,5 @@ export const Container = styled.div<Props>`
   background-color: #1e3a5f;
   border-radius: 4px;
   margin-top: 40px;
+  padding: 4px;
 `;

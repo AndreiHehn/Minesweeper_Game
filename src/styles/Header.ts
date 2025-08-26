@@ -32,7 +32,7 @@ export const Container = styled.header`
     }
 
     .username {
-      color: var(--text-primary);
+      color: #f4f4f5;
       font-size: 20px;
       margin-right: 20px;
     }
@@ -49,7 +49,7 @@ export const Container = styled.header`
     .difficulty,
     .mines,
     .time {
-      color: var(--text-primary);
+      color: #f4f4f5;
       font-size: 20px;
       margin: 0 20px;
       font-weight: 400;
