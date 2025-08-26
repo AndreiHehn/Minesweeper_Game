@@ -22,7 +22,8 @@ export default function Game({ goToPage }: GameProps) {
       </div>
       <div className="difficultyContainer">
         <h2 className="difficulty">
-          {t("Selected Difficulty:")}{" "}
+          {t("Difficulty")}
+          {": "}
           <span className="difficultyText">{t(selectedDifficulty)}</span>
         </h2>
       </div>
