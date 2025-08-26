@@ -1,5 +1,5 @@
-import { Button } from "../generic/Button";
 import { Container } from "../styles/Game";
+import Header from "./Header";
 
 interface GameProps {
   goToPage: () => void;
@@ -8,9 +8,7 @@ interface GameProps {
 export default function Game({ goToPage }: GameProps) {
   return (
     <Container>
-      <Button color="blue" functionButton={goToPage}>
-        Back to Menu
-      </Button>
+      <Header goToPage={goToPage}></Header>
     </Container>
   );
 }

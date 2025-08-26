@@ -56,7 +56,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     return localStorage.getItem("minesweeper_language") || "en";
   });
   const [selectedDifficulty, setSelectedDifficulty] = useState(() => {
-    return localStorage.getItem("minesweeper_difficulty") || "easy";
+    return localStorage.getItem("minesweeper_difficulty") || "Easy";
   });
   const [selectedAvatar, setSelectedAvatar] = useState<string>(
     localStorage.getItem("minesweeper_avatar") || ""
@@ -71,7 +71,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [avatarChanged, setAvatarChanged] = useState<boolean>(false);
   const [quitAvatar, setQuitAvatar] = useState<boolean>(false);
   const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
-  const [activePage, setActivePage] = useState<string>("Home");
+  const [activePage, setActivePage] = useState<string>("Game");
 
   return (
     <AppContext.Provider

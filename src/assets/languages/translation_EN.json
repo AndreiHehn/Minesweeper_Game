@@ -1,4 +1,5 @@
 {
+  "Back to Menu": "Back to Menu",
   "Best Time": "Best Time",
   "Cancel": "Cancel",
   "Change Avatar": "Change Avatar",
@@ -16,9 +17,11 @@
   "Language and Theme": "Language and Theme",
   "Light Theme": "Light Theme",
   "Medium": "Medium",
+  "Mines Remaining:": "Mines Remaining:",
   "Reset": "Reset ",
   "Save": "Save",
   "Select your Avatar": "Select your Avatar",
+  "Selected Difficulty:": "Selected Difficulty:",
   "Settings": "Settings",
   "Start Game": "Start Game",
   "System Theme": "System Theme",
