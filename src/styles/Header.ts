@@ -37,22 +37,39 @@ export const Container = styled.header`
   }
 
   .difficultyContainer,
-  .minesContainer {
+  .minesContainer,
+  .timeContainer {
     height: 50px;
     display: flex;
     align-items: center;
     border-right: 1px solid #f4f4f5;
 
     .difficulty,
-    .mines {
+    .mines,
+    .time {
       color: var(--text-primary);
       font-size: 20px;
       margin: 0 20px;
       font-weight: 400;
+      display: flex;
+      align-items: center;
 
       .difficultyText,
-      .minesText {
+      .minesText,
+      .timeText {
         font-weight: 700;
+        margin-left: 8px;
+      }
+
+      .MineIcon,
+      .TimeIcon {
+        width: 32px;
+        height: 32px;
+        margin-right: 4px;
+
+        path {
+          fill: #f4f4f5;
+        }
       }
     }
   }
