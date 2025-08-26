@@ -25,12 +25,7 @@ export default function Cell({ cellContent, enableClick }: Props) {
   );
   const [isExiting, setIsExiting] = useState(false);
 
-  const cellSize =
-    selectedDifficulty === "Easy"
-      ? "56px"
-      : selectedDifficulty === "Medium"
-      ? "48px"
-      : "32px";
+  const cellSize = selectedDifficulty === "Easy" ? "56px" : "32px";
 
   const cellContentMap: Record<CellContent, string> = {
     mine: MineIcon,

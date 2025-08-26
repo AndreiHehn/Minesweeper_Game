@@ -21,6 +21,12 @@ export const Container = styled.main`
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
+
+    div {
+      // Force the width / height for cells on Loading Screen
+      width: 56px;
+      height: 56px;
+    }
   }
 
   .loadingText {

@@ -8,6 +8,8 @@ export const Container = styled.header`
   align-items: center;
   justify-content: start;
   user-select: none;
+  position: absolute;
+  top: 0;
 
   button {
     position: absolute;

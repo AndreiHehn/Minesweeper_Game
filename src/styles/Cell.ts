@@ -29,7 +29,7 @@ export const Container = styled.div<Props>`
   width: ${(props) => props.cellSize};
   height: ${(props) => props.cellSize};
   border-radius: 4px;
-  margin: 1px;
+  margin: 2px;
   background-color: ${(props) =>
     props.cellContent === "flag" ? "#f2a917" : "#2779c6"};
 

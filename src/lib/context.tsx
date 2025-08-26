@@ -5,6 +5,7 @@ import {
   type Dispatch,
   type ReactNode,
   type SetStateAction,
+  useMemo,
 } from "react";
 
 export const AppContext = createContext({} as AppContextProps);
@@ -12,6 +13,10 @@ export const AppContext = createContext({} as AppContextProps);
 interface AppContextProviderProps {
   children: ReactNode;
 }
+
+type Difficulty = "Easy" | "Medium" | "Hard";
+type FieldSize = { rows: number; cols: number };
+
 interface AppContextProps {
   username: string;
   setUsername: Dispatch<SetStateAction<string>>;
@@ -19,8 +24,9 @@ interface AppContextProps {
   setTheme: Dispatch<SetStateAction<string>>;
   selectedLanguage: string;
   setSelectedLanguage: Dispatch<SetStateAction<string>>;
-  selectedDifficulty: string;
-  setSelectedDifficulty: Dispatch<SetStateAction<string>>;
+  selectedDifficulty: Difficulty;
+  setSelectedDifficulty: Dispatch<SetStateAction<Difficulty>>;
+  fieldSize: FieldSize; // <-- adicionado
   selectedAvatar: string;
   setSelectedAvatar: Dispatch<SetStateAction<string>>;
   showModalSettings: boolean;
@@ -54,12 +60,13 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [theme, setTheme] = useState<string>(
     localStorage.getItem("minesweeper_theme") || "light"
   );
-  const [selectedLanguage, setSelectedLanguage] = useState(() => {
-    return localStorage.getItem("minesweeper_language") || "en";
-  });
-  const [selectedDifficulty, setSelectedDifficulty] = useState(() => {
-    return localStorage.getItem("minesweeper_difficulty") || "Easy";
-  });
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    () => localStorage.getItem("minesweeper_language") || "en"
+  );
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>(
+    () =>
+      (localStorage.getItem("minesweeper_difficulty") as Difficulty) || "Easy"
+  );
   const [selectedAvatar, setSelectedAvatar] = useState<string>(
     localStorage.getItem("minesweeper_avatar") || ""
   );
@@ -78,6 +85,19 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     "Wait, planting the mines"
   );
 
+  // mapa de dificuldades -> tamanho
+  const difficultySizes: Record<Difficulty, FieldSize> = {
+    Easy: { rows: 9, cols: 9 },
+    Medium: { rows: 16, cols: 16 },
+    Hard: { rows: 16, cols: 31 },
+  };
+
+  // calcular dinamicamente o tamanho baseado na dificuldade
+  const fieldSize = useMemo(
+    () => difficultySizes[selectedDifficulty],
+    [selectedDifficulty]
+  );
+
   return (
     <AppContext.Provider
       value={{
@@ -89,6 +109,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setSelectedLanguage,
         selectedDifficulty,
         setSelectedDifficulty,
+        fieldSize, // <-- já disponível no contexto
         selectedAvatar,
         setSelectedAvatar,
         showModalSettings,
