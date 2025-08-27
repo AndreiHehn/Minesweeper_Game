@@ -45,8 +45,9 @@ export default function Cell({
 
   const isClickable = visibleContent ? false : clickable;
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
     if (isClickable) {
+      e.preventDefault();
       setClickable(false);
       if (hiddenContent) {
         setVisibleContent(hiddenContent); // revela mina ou número
@@ -58,36 +59,22 @@ export default function Cell({
 
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
-
     // Se célula vazia → marca bandeira
     if (!visibleContent) {
       setVisibleContent("flag");
-      setClickable(false);
     }
     // Se já tiver bandeira → remove
     else if (visibleContent === "flag") {
+      console.log(visibleContent);
       setVisibleContent(null);
-      setClickable(true);
     }
   };
-
-  // Controla animação de desaparecimento
-  // useEffect(() => {
-  //   if (!cellContent && visibleContent) {
-  //     setIsExiting(true);
-  //     const timer = setTimeout(() => setVisibleContent(null), 400);
-  //     return () => clearTimeout(timer);
-  //   } else if (cellContent) {
-  //     setVisibleContent(cellContent);
-  //     setIsExiting(false);
-  //   }
-  // }, [cellContent]);
 
   useEffect(() => {
     if (loadingCell) {
       setVisibleContent(hiddenContent ?? null);
     }
-  });
+  }, []);
 
   return (
     <Container
