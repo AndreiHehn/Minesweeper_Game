@@ -33,15 +33,12 @@ export default function Game({ goToPage }: GameProps) {
       <div className="minesContainer">
         <h2 className="mines">
           <img src={MineIcon} alt="MineIcon" className="MineIcon" />
-          {t("Mines Remaining:")}{" "}
           <span className="minesText">{minesRemaining}</span>
         </h2>
       </div>
       <div className="timeContainer">
         <h2 className="time">
           <TimeIcon className="TimeIcon"></TimeIcon>
-          {t("Time")}
-          {": "}
           <span className="timeText">{currentTime}</span>
         </h2>
       </div>
