@@ -70,7 +70,6 @@ export default function Cell({
     if (!visibleContent) {
       setVisibleContent("flag");
       setMarkedMines(markedMines + 1);
-      console.log(markedMines, fieldSize.mines);
 
       if (minesRemaining == 0) {
         setMinesRemaining(0);
@@ -82,7 +81,8 @@ export default function Cell({
     else if (visibleContent === "flag") {
       setVisibleContent(null);
       setMarkedMines(markedMines - 1);
-      console.log(markedMines, fieldSize.mines);
+
+      // Mais minas marcadas que a quantidade no campo
       if (markedMines > fieldSize.mines) {
         setMinesRemaining(0);
       } else {
