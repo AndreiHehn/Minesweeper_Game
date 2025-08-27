@@ -4,23 +4,30 @@ import { AppContext } from "../lib/context";
 
 import MineIcon from "../assets/icons/MineIcon.png";
 import FlagIcon from "../assets/icons/FlagIcon.png";
+import EmptyCellIcon from "../assets/icons/EmptyCellIcon.png";
 import Img1 from "../assets/icons/01.png";
 import Img2 from "../assets/icons/02.png";
 import Img3 from "../assets/icons/03.png";
 import Img4 from "../assets/icons/04.png";
 
-type CellContent = "mine" | "flag" | "1" | "2" | "3" | "4";
+type CellContent = "mine" | "flag" | "empty" | "1" | "2" | "3" | "4";
 
 interface Props {
-  loadingCell?: boolean; // célula na página de Loading
-  hiddenContent?: CellContent; // o que está por baixo da célula
+  index: number;
+  loadingCell?: boolean;
+  hiddenContent?: CellContent;
   enableClick: boolean;
+  revealed: boolean;
+  revealCell: (index: number) => void;
 }
 
 export default function Cell({
+  index,
   loadingCell,
   hiddenContent,
   enableClick,
+  revealed,
+  revealCell,
 }: Props) {
   const {
     selectedDifficulty,
@@ -44,6 +51,7 @@ export default function Cell({
   const cellContentMap: Record<CellContent, string> = {
     mine: MineIcon,
     flag: FlagIcon,
+    empty: EmptyCellIcon,
     "1": Img1,
     "2": Img2,
     "3": Img3,
@@ -56,37 +64,34 @@ export default function Cell({
     if (isClickable) {
       e.preventDefault();
       setClickable(false);
-      if (hiddenContent) {
-        setVisibleContent(hiddenContent); // revela mina ou número
-      } else {
-        setVisibleContent(null); // célula vazia
-      }
+      revealCell(index);
     }
   };
 
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Se célula vazia → marca bandeira
-    if (!visibleContent) {
-      setVisibleContent("flag");
-      setMarkedMines(markedMines + 1);
+    if (!revealed) {
+      // Se célula vazia → marca bandeira
+      if (!visibleContent) {
+        setVisibleContent("flag");
+        setMarkedMines(markedMines + 1);
 
-      if (minesRemaining == 0) {
-        setMinesRemaining(0);
-      } else {
-        setMinesRemaining(minesRemaining - 1);
+        if (minesRemaining == 0) {
+          setMinesRemaining(0);
+        } else {
+          setMinesRemaining(minesRemaining - 1);
+        }
       }
-    }
-    // Se já tiver bandeira → remove
-    else if (visibleContent === "flag") {
-      setVisibleContent(null);
-      setMarkedMines(markedMines - 1);
+      // Se já tiver bandeira → remove
+      else if (visibleContent === "flag") {
+        setVisibleContent(null);
+        setMarkedMines(markedMines - 1);
 
-      // Mais minas marcadas que a quantidade no campo
-      if (markedMines > fieldSize.mines) {
-        setMinesRemaining(0);
-      } else {
-        setMinesRemaining(minesRemaining + 1);
+        if (markedMines > fieldSize.mines) {
+          setMinesRemaining(0);
+        } else {
+          setMinesRemaining(minesRemaining + 1);
+        }
       }
     }
   };
@@ -96,6 +101,18 @@ export default function Cell({
       setVisibleContent(hiddenContent ?? null);
     }
   }, [hiddenContent, loadingCell]);
+
+  useEffect(() => {
+    if (revealed) {
+      // Se a célula tiver número ou mina, mantém o conteúdo
+      // Se estiver vazia (undefined), define como "empty" para renderizar fundo
+      if (hiddenContent) {
+        setVisibleContent(hiddenContent);
+      } else {
+        setVisibleContent("empty" as CellContent); // adiciona "empty" no map de imagens
+      }
+    }
+  }, [revealed, hiddenContent]);
 
   return (
     <Container
