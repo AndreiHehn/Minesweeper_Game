@@ -12,7 +12,7 @@ import Img4 from "../assets/icons/04.png";
 type CellContent = "mine" | "flag" | "1" | "2" | "3" | "4";
 
 interface Props {
-  loadingCell?: boolean;
+  loadingCell?: boolean; // célula na página de Loading
   hiddenContent?: CellContent; // o que está por baixo da célula
   enableClick: boolean;
 }

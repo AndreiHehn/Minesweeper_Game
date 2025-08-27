@@ -31,7 +31,11 @@ export const Container = styled.div<Props>`
   border-radius: 4px;
   margin: 2px;
   background-color: ${(props) =>
-    props.cellContent === "flag" ? "#f2a917" : "#2779c6"};
+    props.cellContent === "flag"
+      ? "#f2a917"
+      : props.enableClick
+      ? "#2779c6"
+      : "#c4c4c4"};
 
   cursor: ${(props) => (props.enableClick ? "pointer" : "default")};
 
@@ -41,7 +45,7 @@ export const Container = styled.div<Props>`
         ? "#3d98ed"
         : props.cellContent === "flag"
         ? "#f2a917"
-        : "#2779c6"};
+        : "#c4c4c4"};
   }
 
   .cellContent {

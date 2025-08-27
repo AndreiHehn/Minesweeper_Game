@@ -13,4 +13,5 @@ export const Container = styled.div<Props>`
   border-radius: 4px;
   margin-top: 40px;
   padding: 4px;
+  user-select: none;
 `;
