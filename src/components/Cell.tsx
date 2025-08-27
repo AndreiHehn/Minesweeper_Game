@@ -22,7 +22,8 @@ export default function Cell({
   hiddenContent,
   enableClick,
 }: Props) {
-  const { selectedDifficulty } = useContext(AppContext);
+  const { selectedDifficulty, minesRemaining, setMinesRemaining, fieldSize } =
+    useContext(AppContext);
   const [clickable, setClickable] = useState(enableClick);
 
   // o que o jogador vê (nulo = célula fechada)
@@ -62,11 +63,20 @@ export default function Cell({
     // Se célula vazia → marca bandeira
     if (!visibleContent) {
       setVisibleContent("flag");
+      if (minesRemaining == 0) {
+        setMinesRemaining(0);
+      } else {
+        setMinesRemaining(minesRemaining - 1);
+      }
     }
     // Se já tiver bandeira → remove
     else if (visibleContent === "flag") {
-      console.log(visibleContent);
       setVisibleContent(null);
+      if (minesRemaining == fieldSize.mines) {
+        setMinesRemaining(fieldSize.mines);
+      } else {
+        setMinesRemaining(minesRemaining + 1);
+      }
     }
   };
 

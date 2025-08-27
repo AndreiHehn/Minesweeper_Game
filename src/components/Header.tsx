@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Button } from "../generic/Button";
 import { Container } from "../styles/Header";
 import { AppContext } from "../lib/context";
@@ -11,11 +11,21 @@ interface GameProps {
 }
 
 export default function Game({ goToPage }: GameProps) {
-  const { selectedAvatar, username, selectedDifficulty, setLoadingMessage } =
-    useContext(AppContext);
+  const {
+    selectedAvatar,
+    username,
+    selectedDifficulty,
+    setLoadingMessage,
+    minesRemaining,
+    setMinesRemaining,
+    fieldSize,
+  } = useContext(AppContext);
   const { t } = useTranslation();
-  const minesRemaining = 10;
   const currentTime = "0:00";
+
+  useEffect(() => {
+    setMinesRemaining(fieldSize.mines);
+  }, []);
 
   return (
     <Container>

@@ -63,6 +63,10 @@ export const Container = styled.header`
         margin-left: 8px;
       }
 
+      .minesText {
+        width: 24px;
+      }
+
       .MineIcon,
       .TimeIcon {
         width: 32px;

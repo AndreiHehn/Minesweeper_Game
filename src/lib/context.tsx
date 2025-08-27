@@ -16,7 +16,7 @@ interface AppContextProviderProps {
 }
 
 type Difficulty = "Easy" | "Medium" | "Hard";
-type FieldSize = { rows: number; cols: number };
+type FieldSize = { rows: number; cols: number; mines: number };
 
 interface AppContextProps {
   username: string;
@@ -52,6 +52,8 @@ interface AppContextProps {
   setActivePage: Dispatch<SetStateAction<string>>;
   loadingMessage: string;
   setLoadingMessage: Dispatch<SetStateAction<string>>;
+  minesRemaining: number;
+  setMinesRemaining: Dispatch<SetStateAction<number>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -85,12 +87,13 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [loadingMessage, setLoadingMessage] = useState<string>(
     "Wait, planting the mines"
   );
+  const [minesRemaining, setMinesRemaining] = useState<number>(0);
 
   // mapa de dificuldades -> tamanho
   const difficultySizes: Record<Difficulty, FieldSize> = {
-    Easy: { rows: 9, cols: 9 },
-    Medium: { rows: 16, cols: 16 },
-    Hard: { rows: 16, cols: 31 },
+    Easy: { rows: 9, cols: 9, mines: 10 },
+    Medium: { rows: 16, cols: 16, mines: 40 },
+    Hard: { rows: 16, cols: 31, mines: 99 },
   };
 
   // calcular dinamicamente o tamanho baseado na dificuldade
@@ -135,6 +138,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setActivePage,
         loadingMessage,
         setLoadingMessage,
+        minesRemaining,
+        setMinesRemaining,
       }}
     >
       {children}

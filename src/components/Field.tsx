@@ -4,36 +4,22 @@ import Cell from "./Cell";
 import { AppContext } from "../lib/context";
 
 export default function Field() {
-  const { fieldSize, selectedDifficulty } = useContext(AppContext);
-  const { rows, cols } = fieldSize;
-
-  // Quantidade de minas por dificuldade
-  const minesCount = useMemo(() => {
-    switch (selectedDifficulty) {
-      case "Easy":
-        return 10;
-      case "Medium":
-        return 40;
-      case "Hard":
-        return 99;
-      default:
-        return 10;
-    }
-  }, [selectedDifficulty]);
+  const { fieldSize } = useContext(AppContext);
+  const { rows, cols, mines } = fieldSize;
 
   // Gera posições únicas para as minas
   const minePositions = useMemo(() => {
     const positions: number[] = [];
     const totalCells = rows * cols;
 
-    while (positions.length < minesCount) {
+    while (positions.length < mines) {
       const pos = Math.floor(Math.random() * totalCells);
       if (!positions.includes(pos)) {
         positions.push(pos);
       }
     }
     return positions;
-  }, [rows, cols, minesCount]);
+  }, [rows, cols, mines]);
 
   return (
     <Container rows={rows} cols={cols}>
