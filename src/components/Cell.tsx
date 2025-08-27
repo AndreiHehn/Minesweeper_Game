@@ -74,7 +74,7 @@ export default function Cell({
     if (loadingCell) {
       setVisibleContent(hiddenContent ?? null);
     }
-  }, []);
+  }, [hiddenContent, loadingCell]);
 
   return (
     <Container
