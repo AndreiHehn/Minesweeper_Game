@@ -96,7 +96,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const difficultySizes: Record<Difficulty, FieldSize> = {
     Easy: { rows: 9, cols: 9, mines: 10 },
     Medium: { rows: 16, cols: 16, mines: 40 },
-    Hard: { rows: 16, cols: 31, mines: 99 },
+    Hard: { rows: 16, cols: 30, mines: 99 },
   };
 
   // calcular dinamicamente o tamanho baseado na dificuldade
@@ -116,7 +116,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setSelectedLanguage,
         selectedDifficulty,
         setSelectedDifficulty,
-        fieldSize, // <-- já disponível no contexto
+        fieldSize,
         selectedAvatar,
         setSelectedAvatar,
         showModalSettings,

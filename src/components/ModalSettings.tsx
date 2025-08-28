@@ -160,7 +160,7 @@ export function ModalSettings() {
               <ToolTip
                 iconColor="var(--text-primary)"
                 iconSize="12px"
-                message={t("16x31 Grid, 99 Mines")}
+                message={t("16x30 Grid, 99 Mines")}
                 boxColor="var(--background-tertiary)"
                 boxPosition="right"
                 borderRadius="2px"
