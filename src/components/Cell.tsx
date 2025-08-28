@@ -47,6 +47,7 @@ export default function Cell({
     markedMines,
     setMarkedMines,
     fieldSize,
+    endGame,
   } = useContext(AppContext);
   const [clickable, setClickable] = useState(enableClick);
 
@@ -71,7 +72,7 @@ export default function Cell({
     "6": Img6,
   };
 
-  const isClickable = visibleContent ? false : clickable;
+  const isClickable = endGame ? false : visibleContent ? false : clickable;
 
   const handleClick = (e: React.MouseEvent) => {
     if (isClickable) {
@@ -135,8 +136,10 @@ export default function Cell({
       enableClick={isClickable}
       cellContent={
         loadingCell && !visibleContent
-          ? "closed" // estado especial azul na tela de loading
-          : visibleContent ?? ""
+          ? "closed"
+          : revealed
+          ? visibleContent ?? "empty"
+          : visibleContent ?? "closed"
       }
       onClick={handleClick}
       onContextMenu={handleRightClick}

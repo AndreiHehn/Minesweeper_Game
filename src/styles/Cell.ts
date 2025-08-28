@@ -32,21 +32,19 @@ export const Container = styled.div<Props>`
   margin: 2px;
   background-color: ${(props) =>
     props.cellContent === "closed"
-      ? "#2779c6"
+      ? "#2779c6" // fechado
       : props.cellContent === "flag"
       ? "#f2a917"
       : props.cellContent === "mine"
       ? "#dd5353"
-      : props.enableClick
-      ? "#2779c6"
       : "#c4c4c4"};
 
   cursor: ${(props) => (props.enableClick ? "pointer" : "default")};
 
   &:hover {
     background-color: ${(props) =>
-      props.enableClick
-        ? "#3d98ed"
+      props.cellContent === "closed"
+        ? "#3d98ed" // fechado
         : props.cellContent === "flag"
         ? "#f2a917"
         : props.cellContent === "mine"

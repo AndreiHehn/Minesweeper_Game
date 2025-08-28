@@ -56,6 +56,8 @@ interface AppContextProps {
   setMinesRemaining: Dispatch<SetStateAction<number>>;
   markedMines: number;
   setMarkedMines: Dispatch<SetStateAction<number>>;
+  endGame: boolean;
+  setEndGame: Dispatch<SetStateAction<boolean>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -91,6 +93,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   );
   const [minesRemaining, setMinesRemaining] = useState<number>(0);
   const [markedMines, setMarkedMines] = useState<number>(0);
+  const [endGame, setEndGame] = useState<boolean>(false);
 
   // mapa de dificuldades -> tamanho
   const difficultySizes: Record<Difficulty, FieldSize> = {
@@ -145,6 +148,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setMinesRemaining,
         markedMines,
         setMarkedMines,
+        endGame,
+        setEndGame,
       }}
     >
       {children}

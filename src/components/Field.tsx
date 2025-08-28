@@ -6,7 +6,7 @@ import Cell from "./Cell";
 import { AppContext } from "../lib/context";
 
 export default function Field() {
-  const { fieldSize } = useContext(AppContext);
+  const { fieldSize, endGame, setEndGame } = useContext(AppContext);
   const { rows, cols, mines } = fieldSize;
 
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
@@ -78,9 +78,10 @@ export default function Field() {
 
       const hiddenContents = getHiddenContents(positions);
 
-      // Se clicou em mina, revela só ela
+      // Se clicou em mina, revela só ela e encerra o jogo
       if (hiddenContents[clickedIndex] === "mine") {
         setRevealed((prev) => new Set(prev).add(clickedIndex));
+        setEndGame(true);
         return;
       }
 
@@ -142,6 +143,7 @@ export default function Field() {
 
   const hiddenContents = getHiddenContents(minePositions);
 
+  // Disable Right Click
   useEffect(() => {
     const handleContextMenu = (e: MouseEvent) => {
       e.preventDefault();
@@ -154,13 +156,24 @@ export default function Field() {
     };
   }, []);
 
+  useEffect(() => {
+    if (endGame) {
+      const timer = setTimeout(() => {
+        // Revela todo o tabuleiro
+        setRevealed(new Set(Array.from({ length: rows * cols }, (_, i) => i)));
+      }, 2000); // espera 2 segundos
+
+      return () => clearTimeout(timer);
+    }
+  }, [endGame, rows, cols]);
+
   return (
     <Container rows={rows} cols={cols}>
       {Array.from({ length: rows * cols }).map((_, index) => (
         <Cell
           key={index}
           index={index}
-          enableClick={true}
+          enableClick={!endGame}
           hiddenContent={hiddenContents[index] as any}
           revealed={revealed.has(index)}
           revealCell={revealCell}
