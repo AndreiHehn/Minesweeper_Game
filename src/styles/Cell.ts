@@ -33,6 +33,8 @@ export const Container = styled.div<Props>`
   background-color: ${(props) =>
     props.cellContent === "flag"
       ? "#f2a917"
+      : props.cellContent === "mine"
+      ? "#dd5353"
       : props.enableClick
       ? "#2779c6"
       : "#c4c4c4"};
@@ -45,6 +47,8 @@ export const Container = styled.div<Props>`
         ? "#3d98ed"
         : props.cellContent === "flag"
         ? "#f2a917"
+        : props.cellContent === "mine"
+        ? "#dd5353"
         : "#c4c4c4"};
   }
 
@@ -64,7 +68,7 @@ export const Container = styled.div<Props>`
 
     &.exit {
       opacity: 0;
-      transition: opacity 0.4s ease; // esmaece sem alterar tamanho
+      transition: opacity 0.4s ease;
     }
   }
 `;
