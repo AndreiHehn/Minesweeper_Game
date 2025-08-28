@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useContext, useState, useCallback } from "react";
+import { useContext, useState, useCallback, useEffect } from "react";
 import { Container } from "../styles/Field";
 import Cell from "./Cell";
 import { AppContext } from "../lib/context";
@@ -141,6 +141,18 @@ export default function Field() {
   );
 
   const hiddenContents = getHiddenContents(minePositions);
+
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
 
   return (
     <Container rows={rows} cols={cols}>
