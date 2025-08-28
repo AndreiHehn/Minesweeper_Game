@@ -9,8 +9,19 @@ import Img1 from "../assets/icons/01.png";
 import Img2 from "../assets/icons/02.png";
 import Img3 from "../assets/icons/03.png";
 import Img4 from "../assets/icons/04.png";
+import Img5 from "../assets/icons/05.png";
+import Img6 from "../assets/icons/06.png";
 
-type CellContent = "mine" | "flag" | "empty" | "1" | "2" | "3" | "4";
+type CellContent =
+  | "mine"
+  | "flag"
+  | "empty"
+  | "1"
+  | "2"
+  | "3"
+  | "4"
+  | "5"
+  | "6";
 
 interface Props {
   index: number;
@@ -56,6 +67,8 @@ export default function Cell({
     "2": Img2,
     "3": Img3,
     "4": Img4,
+    "5": Img5,
+    "6": Img6,
   };
 
   const isClickable = visibleContent ? false : clickable;
