@@ -105,11 +105,11 @@ export default function Cell({
   useEffect(() => {
     if (revealed) {
       // Se a célula tiver número ou mina, mantém o conteúdo
-      // Se estiver vazia (undefined), define como "empty" para renderizar fundo
+      // Se estiver vazia, define como "empty" para renderizar fundo
       if (hiddenContent) {
         setVisibleContent(hiddenContent);
       } else {
-        setVisibleContent("empty" as CellContent); // adiciona "empty" no map de imagens
+        setVisibleContent("empty" as CellContent);
       }
     }
   }, [revealed, hiddenContent]);
