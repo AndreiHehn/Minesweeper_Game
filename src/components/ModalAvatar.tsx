@@ -80,7 +80,7 @@ export default function AvatarSelection() {
               className={`avatar-item ${
                 localAvatar === avatar ? "selected" : ""
               }`}
-              onClick={() => (setLocalAvatar(avatar), console.log(avatar))}
+              onClick={() => setLocalAvatar(avatar)}
             />
           </div>
         ))}
