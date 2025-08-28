@@ -31,7 +31,9 @@ export const Container = styled.div<Props>`
   border-radius: 4px;
   margin: 2px;
   background-color: ${(props) =>
-    props.cellContent === "flag"
+    props.cellContent === "closed"
+      ? "#2779c6"
+      : props.cellContent === "flag"
       ? "#f2a917"
       : props.cellContent === "mine"
       ? "#dd5353"

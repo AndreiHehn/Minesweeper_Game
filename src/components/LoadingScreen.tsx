@@ -47,6 +47,7 @@ export default function LoadingScreen() {
               enableClick={false}
               hiddenContent={cellContent as any}
               loadingCell
+              index={0}
             />
           ))}
         </div>

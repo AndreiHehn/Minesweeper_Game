@@ -28,8 +28,8 @@ interface Props {
   loadingCell?: boolean;
   hiddenContent?: CellContent;
   enableClick: boolean;
-  revealed: boolean;
-  revealCell: (index: number) => void;
+  revealed?: boolean;
+  revealCell?: (index: number) => void;
 }
 
 export default function Cell({
@@ -77,7 +77,9 @@ export default function Cell({
     if (isClickable) {
       e.preventDefault();
       setClickable(false);
-      revealCell(index);
+      if (revealCell) {
+        revealCell(index);
+      }
     }
   };
 
@@ -131,7 +133,11 @@ export default function Cell({
     <Container
       cellSize={cellSize}
       enableClick={isClickable}
-      cellContent={visibleContent ?? ""}
+      cellContent={
+        loadingCell && !visibleContent
+          ? "closed" // estado especial azul na tela de loading
+          : visibleContent ?? ""
+      }
       onClick={handleClick}
       onContextMenu={handleRightClick}
     >
