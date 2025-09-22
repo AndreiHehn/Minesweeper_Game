@@ -33,6 +33,7 @@ export default function Home({ goToPage }: HomeProps) {
     setShowModalStatistics,
     setLoadingMessage,
     setEndGame,
+    setGameResult,
   } = useContext(AppContext);
 
   function ResetDefaults() {
@@ -82,6 +83,7 @@ export default function Home({ goToPage }: HomeProps) {
           functionButton={() => (
             goToPage(),
             setLoadingMessage("Wait, planting the mines"),
+            setGameResult(""),
             setEndGame(false)
           )}
         >
