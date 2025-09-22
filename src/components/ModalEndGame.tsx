@@ -39,15 +39,15 @@ export default function ModalEndGame({ goToPage }: GameProps) {
           height={170}
         ></GenericPieChart>
         <div className="chart-info">
-          <h2 className="matches-played">{t("Played")}:</h2>
+          <h2 className="matches-played">{t("Matches")}</h2>
           <span className="chart-data">
             {easyData[0].value + easyData[1].value}
           </span>
-          <h2 className="matches-won">{t("Won")}:</h2>
+          <h2 className="matches-won">{t("Won")}</h2>
           <span className="chart-data" id="won">
             {easyData[0].value}{" "}
           </span>
-          <h2 className="matches-lost">{t("Lost")}: </h2>
+          <h2 className="matches-lost">{t("Lost")}</h2>
           <span className="chart-data" id="lost">
             {easyData[1].value}
           </span>
