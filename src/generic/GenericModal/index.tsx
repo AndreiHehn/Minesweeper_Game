@@ -47,9 +47,11 @@ export function ModalGeneric({
       >
         <header className="modalHeader">
           <h1 className="modalTitle">{title}</h1>
-          <div className="closeButton">
-            <CloseIcon onClick={functionCloseModal} />
-          </div>
+          {functionCloseModal && (
+            <div className="closeButton">
+              <CloseIcon onClick={functionCloseModal} />
+            </div>
+          )}
         </header>
 
         <section className="modalBody">{children}</section>
