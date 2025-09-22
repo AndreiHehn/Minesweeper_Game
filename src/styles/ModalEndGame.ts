@@ -1,32 +1,55 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  .footer-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  .charts {
+  .match-duration {
+    font-size: 16px;
+    color: var(--text-primary);
+    font-weight: 400;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .duration {
+    margin-left: 5px;
   }
 
   .chart {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
 
-    .chartTitle {
-      font-size: 16px;
-      color: var(--text-primary);
-      margin-bottom: -4px;
-    }
+  .chart-info {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .chartBest {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text-primary);
-      margin-top: 4px;
-    }
+  .matches-played,
+  .matches-won,
+  .matches-lost,
+  .chart-data {
+    font-size: 16px;
+    color: var(--text-primary);
+    font-weight: 400;
+    width: 60px;
+  }
+
+  .chart-data {
+    font-weight: 600;
+  }
+
+  #won {
+    color: #29ba3c;
+  }
+
+  #lost {
+    color: #cd2e2e;
+  }
+
+  .footer-buttons {
+    display: flex;
+    justify-content: space-between;
   }
 `;

@@ -20,7 +20,7 @@ export default function ModalStatistics() {
   const mediumBest = "00:00";
   const hardBest = "00:00";
 
-  const colors = ["#029715", "#a62222"];
+  const colors = ["#29ba3c", "#cd2e2e"];
   return (
     <Container>
       <section className="charts">

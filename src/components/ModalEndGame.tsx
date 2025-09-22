@@ -11,22 +11,48 @@ interface GameProps {
 
 export default function ModalEndGame({ goToPage }: GameProps) {
   const { t } = useTranslation();
-  const {
-    setShowModalEndGame,
-    setEndGame,
-    setResetField,
-    gameResult,
-    setGameResult,
-  } = useContext(AppContext);
+  const { setShowModalEndGame, setEndGame, setResetField, setGameResult } =
+    useContext(AppContext);
   const easyData = [
     { name: "Vitórias", value: 12 },
     { name: "Derrotas", value: 1 },
   ];
   const easyBest = "00:00";
 
-  const colors = ["#029715", "#a62222"];
+  const colors = ["#29ba3c", "#cd2e2e"];
   return (
     <Container>
+      <section className="match-duration">
+        {t("Match Duration")}: <span className="duration">00:00</span>
+      </section>
+      <div className="chart">
+        <GenericPieChart
+          data={easyData}
+          dataColors={colors}
+          centerData={
+            Math.round(
+              (easyData[0].value / (easyData[0].value + easyData[1].value)) *
+                100
+            ).toString() + "%"
+          }
+          width={170}
+          height={170}
+        ></GenericPieChart>
+        <div className="chart-info">
+          <h2 className="matches-played">{t("Played")}:</h2>
+          <span className="chart-data">
+            {easyData[0].value + easyData[1].value}
+          </span>
+          <h2 className="matches-won">{t("Won")}:</h2>
+          <span className="chart-data" id="won">
+            {easyData[0].value}{" "}
+          </span>
+          <h2 className="matches-lost">{t("Lost")}: </h2>
+          <span className="chart-data" id="lost">
+            {easyData[1].value}
+          </span>
+        </div>
+      </div>
       <footer className="footer-buttons">
         <Button
           color="green"
