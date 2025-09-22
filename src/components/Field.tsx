@@ -171,7 +171,6 @@ export default function Field() {
         setRevealed(new Set(Array.from({ length: rows * cols }, (_, i) => i)));
       }, 2000); // espera 2 segundos
       const showModalTimer = setTimeout(() => {
-        // Revela todo o tabuleiro
         setShowModalEndGame(true);
       }, 3000); // espera 2 segundos
 
@@ -180,6 +179,26 @@ export default function Field() {
       );
     }
   }, [endGame, rows, cols]);
+
+  useEffect(() => {
+    const totalCells = rows * cols;
+    const nonMineCells = totalCells - mines;
+
+    if (
+      revealed.size === nonMineCells &&
+      firstClickDone &&
+      gameResult !== "Defeat"
+    ) {
+      setGameResult("Victory");
+      setEndGame(true);
+
+      const showModalTimer = setTimeout(() => {
+        setShowModalEndGame(true);
+      }, 2000); // pode esperar 1s só para dar feedback visual
+
+      return () => clearTimeout(showModalTimer);
+    }
+  }, [revealed, rows, cols, mines, firstClickDone, gameResult]);
 
   return (
     <Container rows={rows} cols={cols}>
