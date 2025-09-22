@@ -36,6 +36,8 @@ interface AppContextProps {
   setShowModalAvatar: Dispatch<SetStateAction<boolean>>;
   showModalStatistics: boolean;
   setShowModalStatistics: Dispatch<SetStateAction<boolean>>;
+  showModalEndGame: boolean;
+  setShowModalEndGame: Dispatch<SetStateAction<boolean>>;
   resetSettings: boolean;
   setResetSettings: Dispatch<SetStateAction<boolean>>;
   settingsChanged: boolean;
@@ -52,12 +54,16 @@ interface AppContextProps {
   setActivePage: Dispatch<SetStateAction<string>>;
   loadingMessage: string;
   setLoadingMessage: Dispatch<SetStateAction<string>>;
+  gameResult: string;
+  setGameResult: Dispatch<SetStateAction<string>>;
   minesRemaining: number;
   setMinesRemaining: Dispatch<SetStateAction<number>>;
   markedMines: number;
   setMarkedMines: Dispatch<SetStateAction<number>>;
   endGame: boolean;
   setEndGame: Dispatch<SetStateAction<boolean>>;
+  resetField: number;
+  setResetField: Dispatch<SetStateAction<number>>;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -81,6 +87,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [showModalAvatar, setShowModalAvatar] = useState<boolean>(false);
   const [showModalStatistics, setShowModalStatistics] =
     useState<boolean>(false);
+  const [showModalEndGame, setShowModalEndGame] = useState<boolean>(false);
   const [resetSettings, setResetSettings] = useState<boolean>(false);
   const [settingsChanged, setSettingsChanged] = useState<boolean>(false);
   const [quitSettings, setQuitSettings] = useState<boolean>(false);
@@ -91,9 +98,11 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [loadingMessage, setLoadingMessage] = useState<string>(
     "Wait, planting the mines"
   );
+  const [gameResult, setGameResult] = useState<string>("");
   const [minesRemaining, setMinesRemaining] = useState<number>(0);
   const [markedMines, setMarkedMines] = useState<number>(0);
   const [endGame, setEndGame] = useState<boolean>(false);
+  const [resetField, setResetField] = useState(0);
 
   // mapa de dificuldades -> tamanho
   const difficultySizes: Record<Difficulty, FieldSize> = {
@@ -128,6 +137,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setShowModalAvatar,
         showModalStatistics,
         setShowModalStatistics,
+        showModalEndGame,
+        setShowModalEndGame,
         resetSettings,
         setResetSettings,
         settingsChanged,
@@ -144,12 +155,16 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setActivePage,
         loadingMessage,
         setLoadingMessage,
+        gameResult,
+        setGameResult,
         minesRemaining,
         setMinesRemaining,
         markedMines,
         setMarkedMines,
         endGame,
         setEndGame,
+        resetField,
+        setResetField,
       }}
     >
       {children}

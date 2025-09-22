@@ -10,7 +10,7 @@ interface GameProps {
   goToPage: () => void;
 }
 
-export default function Game({ goToPage }: GameProps) {
+export default function Header({ goToPage }: GameProps) {
   const {
     selectedAvatar,
     username,
@@ -19,13 +19,15 @@ export default function Game({ goToPage }: GameProps) {
     minesRemaining,
     setMinesRemaining,
     fieldSize,
+    resetField,
   } = useContext(AppContext);
   const { t } = useTranslation();
   const currentTime = "0:00";
 
+  // Update mines amount after every new game
   useEffect(() => {
     setMinesRemaining(fieldSize.mines);
-  }, []);
+  }, [resetField]);
 
   return (
     <Container>

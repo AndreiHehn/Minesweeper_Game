@@ -32,13 +32,14 @@ export default function Home({ goToPage }: HomeProps) {
     setQuitAvatar,
     setShowModalStatistics,
     setLoadingMessage,
+    setEndGame,
   } = useContext(AppContext);
 
   function ResetDefaults() {
     setUsername("Player 001");
     setTheme("light");
     setSelectedLanguage("en");
-    setSelectedDifficulty("easy");
+    setSelectedDifficulty("Easy");
     localStorage.setItem("minesweeper_username", "Player 001");
     localStorage.setItem("minesweeper_theme", "light");
     localStorage.setItem("minesweeper_language", "en");
@@ -79,7 +80,9 @@ export default function Home({ goToPage }: HomeProps) {
           borderRadius="4px"
           width="130px"
           functionButton={() => (
-            goToPage(), setLoadingMessage("Wait, planting the mines")
+            goToPage(),
+            setLoadingMessage("Wait, planting the mines"),
+            setEndGame(false)
           )}
         >
           {t("Start Game")}

@@ -6,7 +6,14 @@ import Cell from "./Cell";
 import { AppContext } from "../lib/context";
 
 export default function Field() {
-  const { fieldSize, endGame, setEndGame } = useContext(AppContext);
+  const {
+    fieldSize,
+    endGame,
+    setEndGame,
+    setShowModalEndGame,
+    gameResult,
+    setGameResult,
+  } = useContext(AppContext);
   const { rows, cols, mines } = fieldSize;
 
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
@@ -81,6 +88,7 @@ export default function Field() {
       // Se clicou em mina, revela só ela e encerra o jogo
       if (hiddenContents[clickedIndex] === "mine") {
         setRevealed((prev) => new Set(prev).add(clickedIndex));
+        setGameResult("Defeat");
         setEndGame(true);
         return;
       }
@@ -157,13 +165,19 @@ export default function Field() {
   }, []);
 
   useEffect(() => {
-    if (endGame) {
-      const timer = setTimeout(() => {
+    if (gameResult == "Defeat") {
+      const displayMinesTimer = setTimeout(() => {
         // Revela todo o tabuleiro
         setRevealed(new Set(Array.from({ length: rows * cols }, (_, i) => i)));
       }, 2000); // espera 2 segundos
+      const showModalTimer = setTimeout(() => {
+        // Revela todo o tabuleiro
+        setShowModalEndGame(true);
+      }, 3000); // espera 2 segundos
 
-      return () => clearTimeout(timer);
+      return () => (
+        clearTimeout(displayMinesTimer), clearTimeout(showModalTimer)
+      );
     }
   }, [endGame, rows, cols]);
 

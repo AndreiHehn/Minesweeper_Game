@@ -9,6 +9,7 @@ import ModalAvatar from "./components/ModalAvatar";
 import ModalStatistics from "./components/ModalStatistics";
 import LoadingScreen from "./components/LoadingScreen";
 import Game from "./components/Game";
+import ModalEndGame from "./components/ModalEndGame";
 
 function App() {
   const {
@@ -25,6 +26,8 @@ function App() {
     setShowModalStatistics,
     activePage,
     setActivePage,
+    showModalEndGame,
+    gameResult,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -198,6 +201,22 @@ function App() {
           width="400px"
         >
           <ModalSettings />
+        </ModalGeneric>
+      )}
+      {showModalEndGame && (
+        <ModalGeneric
+          // functionCloseModal={VerifySettings}
+          mobileFullScreen
+          top="50%"
+          left="50%"
+          title={
+            gameResult == "Defeat"
+              ? t("BOOM! You lost!")
+              : t("Congratulations! You won!")
+          }
+          width="400px"
+        >
+          <ModalEndGame goToPage={() => goToPageWithTransition("Home")} />
         </ModalGeneric>
       )}
     </>
