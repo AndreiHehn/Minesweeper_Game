@@ -7,6 +7,7 @@ import {
   type ReactNode,
   type SetStateAction,
   useMemo,
+  useEffect,
 } from "react";
 
 export const AppContext = createContext({} as AppContextProps);
@@ -18,6 +19,18 @@ interface AppContextProviderProps {
 type Difficulty = "Easy" | "Medium" | "Hard";
 type FieldSize = { rows: number; cols: number; mines: number };
 
+interface DifficultyStats {
+  wins: number;
+  defeats: number;
+  best: number;
+}
+
+interface GameStats {
+  Easy: DifficultyStats;
+  Medium: DifficultyStats;
+  Hard: DifficultyStats;
+}
+
 interface AppContextProps {
   username: string;
   setUsername: Dispatch<SetStateAction<string>>;
@@ -27,7 +40,7 @@ interface AppContextProps {
   setSelectedLanguage: Dispatch<SetStateAction<string>>;
   selectedDifficulty: Difficulty;
   setSelectedDifficulty: Dispatch<SetStateAction<Difficulty>>;
-  fieldSize: FieldSize; // <-- adicionado
+  fieldSize: FieldSize;
   selectedAvatar: string;
   setSelectedAvatar: Dispatch<SetStateAction<string>>;
   showModalSettings: boolean;
@@ -50,6 +63,8 @@ interface AppContextProps {
   setQuitAvatar: Dispatch<SetStateAction<boolean>>;
   emptyUsername: boolean;
   setEmptyUsername: Dispatch<SetStateAction<boolean>>;
+  resetStats: boolean;
+  setResetStats: Dispatch<SetStateAction<boolean>>;
   activePage: string;
   setActivePage: Dispatch<SetStateAction<string>>;
   loadingMessage: string;
@@ -66,6 +81,11 @@ interface AppContextProps {
   setResetField: Dispatch<SetStateAction<number>>;
   matchTime: number;
   setMatchTime: Dispatch<SetStateAction<number>>;
+
+  stats: GameStats;
+  setStats: Dispatch<SetStateAction<GameStats>>;
+  addWin: (difficulty: Difficulty, time: number) => void;
+  addDefeat: (difficulty: Difficulty) => void;
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
@@ -85,6 +105,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [selectedAvatar, setSelectedAvatar] = useState<string>(
     localStorage.getItem("minesweeper_avatar") || ""
   );
+
   const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
   const [showModalAvatar, setShowModalAvatar] = useState<boolean>(false);
   const [showModalStatistics, setShowModalStatistics] =
@@ -96,6 +117,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [avatarChanged, setAvatarChanged] = useState<boolean>(false);
   const [quitAvatar, setQuitAvatar] = useState<boolean>(false);
   const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
+  const [resetStats, setResetStats] = useState<boolean>(false);
   const [activePage, setActivePage] = useState<string>("Game");
   const [loadingMessage, setLoadingMessage] = useState<string>(
     "Wait, planting the mines"
@@ -119,6 +141,49 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     () => difficultySizes[selectedDifficulty],
     [selectedDifficulty]
   );
+
+  const defaultStats: GameStats = {
+    Easy: { wins: 0, defeats: 0, best: 0 },
+    Medium: { wins: 0, defeats: 0, best: 0 },
+    Hard: { wins: 0, defeats: 0, best: 0 },
+  };
+
+  const [stats, setStats] = useState<GameStats>(() => {
+    const stored = localStorage.getItem("minesweeper_stats");
+    return stored ? JSON.parse(stored) : defaultStats;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("minesweeper_stats", JSON.stringify(stats));
+  }, [stats]);
+
+  const addWin = (difficulty: Difficulty, time: number) => {
+    setStats((prev) => {
+      const newBest =
+        prev[difficulty].best === 0
+          ? time
+          : Math.min(prev[difficulty].best, time);
+
+      return {
+        ...prev,
+        [difficulty]: {
+          ...prev[difficulty],
+          wins: prev[difficulty].wins + 1,
+          best: newBest,
+        },
+      };
+    });
+  };
+
+  const addDefeat = (difficulty: Difficulty) => {
+    setStats((prev) => ({
+      ...prev,
+      [difficulty]: {
+        ...prev[difficulty],
+        defeats: prev[difficulty].defeats + 1,
+      },
+    }));
+  };
 
   return (
     <AppContext.Provider
@@ -154,6 +219,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setQuitAvatar,
         emptyUsername,
         setEmptyUsername,
+        resetStats,
+        setResetStats,
         activePage,
         setActivePage,
         loadingMessage,
@@ -170,6 +237,10 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setResetField,
         matchTime,
         setMatchTime,
+        stats,
+        setStats,
+        addWin,
+        addDefeat,
       }}
     >
       {children}

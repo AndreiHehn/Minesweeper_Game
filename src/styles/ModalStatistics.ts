@@ -13,6 +13,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 170px;
 
     .chartTitle {
       font-size: 16px;
@@ -26,5 +27,17 @@ export const Container = styled.div`
       color: var(--text-primary);
       margin-top: 4px;
     }
+  }
+
+  .no-matches {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 30px 0;
+  }
+
+  .reset-stats {
+    display: flex;
+    justify-content: end;
   }
 `;

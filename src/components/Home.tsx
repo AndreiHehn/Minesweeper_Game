@@ -34,7 +34,16 @@ export default function Home({ goToPage }: HomeProps) {
     setLoadingMessage,
     setEndGame,
     setGameResult,
+    resetStats,
+    setResetStats,
+    setStats,
   } = useContext(AppContext);
+
+  const defaultStats = {
+    Easy: { wins: 0, defeats: 0, best: 0 },
+    Medium: { wins: 0, defeats: 0, best: 0 },
+    Hard: { wins: 0, defeats: 0, best: 0 },
+  };
 
   function ResetDefaults() {
     setUsername("Player 001");
@@ -151,6 +160,15 @@ export default function Home({ goToPage }: HomeProps) {
           textMessage={t("Your username cannot be empty!")}
           onClick1={() => setEmptyUsername(false)}
           textButton1={t("OK")}
+        ></ModalMessage>
+      )}
+      {resetStats && (
+        <ModalMessage
+          textMessage={t("Do you want to reset all stats?")}
+          onClick1={() => setResetStats(false)}
+          onClick2={() => (setStats(defaultStats), setResetStats(false))}
+          textButton1={t("Cancel")}
+          textButton2={t("Yes")}
         ></ModalMessage>
       )}
     </Container>

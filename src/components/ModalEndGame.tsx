@@ -18,12 +18,29 @@ export default function ModalEndGame({ goToPage }: GameProps) {
     setResetField,
     setGameResult,
     matchTime,
+    selectedDifficulty,
+    stats,
   } = useContext(AppContext);
-  const easyData = [
-    { name: "Vitórias", value: 12 },
-    { name: "Derrotas", value: 1 },
+  const data = [
+    {
+      name: "Vitórias",
+      value:
+        selectedDifficulty === "Easy"
+          ? stats.Easy.wins
+          : selectedDifficulty === "Medium"
+          ? stats.Medium.wins
+          : stats.Hard.wins,
+    },
+    {
+      name: "Derrotas",
+      value:
+        selectedDifficulty === "Easy"
+          ? stats.Easy.defeats
+          : selectedDifficulty === "Medium"
+          ? stats.Medium.defeats
+          : stats.Hard.defeats,
+    },
   ];
-  const easyBest = "00:00";
 
   const colors = ["#29ba3c", "#cd2e2e"];
   return (
@@ -34,12 +51,11 @@ export default function ModalEndGame({ goToPage }: GameProps) {
       </section>
       <div className="chart">
         <GenericPieChart
-          data={easyData}
+          data={data}
           dataColors={colors}
           centerData={
             Math.round(
-              (easyData[0].value / (easyData[0].value + easyData[1].value)) *
-                100
+              (data[0].value / (data[0].value + data[1].value)) * 100
             ).toString() + "%"
           }
           width={170}
@@ -47,16 +63,14 @@ export default function ModalEndGame({ goToPage }: GameProps) {
         ></GenericPieChart>
         <div className="chart-info">
           <h2 className="matches-played">{t("Matches")}</h2>
-          <span className="chart-data">
-            {easyData[0].value + easyData[1].value}
-          </span>
+          <span className="chart-data">{data[0].value + data[1].value}</span>
           <h2 className="matches-won">{t("Won")}</h2>
           <span className="chart-data" id="won">
-            {easyData[0].value}{" "}
+            {data[0].value}{" "}
           </span>
           <h2 className="matches-lost">{t("Lost")}</h2>
           <span className="chart-data" id="lost">
-            {easyData[1].value}
+            {data[1].value}
           </span>
         </div>
       </div>

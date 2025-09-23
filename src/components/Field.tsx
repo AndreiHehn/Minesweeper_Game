@@ -13,8 +13,12 @@ export default function Field() {
     setShowModalEndGame,
     gameResult,
     setGameResult,
-    matchTime,
     setMatchTime,
+    stats,
+    addWin,
+    addDefeat,
+    selectedDifficulty,
+    matchTime,
   } = useContext(AppContext);
   const { rows, cols, mines } = fieldSize;
 
@@ -225,6 +229,16 @@ export default function Field() {
   useEffect(() => {
     setMatchTime(0);
   }, [rows, cols, mines]);
+
+  useEffect(() => {
+    if (gameResult != "") {
+      if (gameResult == "Victory") {
+        addWin(selectedDifficulty, matchTime);
+      } else {
+        addDefeat(selectedDifficulty);
+      }
+    }
+  }, [gameResult]);
 
   return (
     <Container rows={rows} cols={cols}>
