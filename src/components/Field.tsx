@@ -13,6 +13,8 @@ export default function Field() {
     setShowModalEndGame,
     gameResult,
     setGameResult,
+    matchTime,
+    setMatchTime,
   } = useContext(AppContext);
   const { rows, cols, mines } = fieldSize;
 
@@ -199,6 +201,30 @@ export default function Field() {
       return () => clearTimeout(showModalTimer);
     }
   }, [revealed, rows, cols, mines, firstClickDone, gameResult]);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    if (firstClickDone && !endGame) {
+      // inicia o cronômetro
+      timer = setInterval(() => {
+        setMatchTime((prev) => prev + 1);
+      }, 1000);
+    }
+
+    if (endGame && timer) {
+      clearInterval(timer);
+    }
+
+    // cleanup no unmount ou quando partida termina
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [firstClickDone, endGame]);
+
+  useEffect(() => {
+    setMatchTime(0);
+  }, [rows, cols, mines]);
 
   return (
     <Container rows={rows} cols={cols}>

@@ -4,6 +4,7 @@ import { Container } from "../styles/ModalEndGame";
 import { Button } from "../generic/Button";
 import { useContext } from "react";
 import { AppContext } from "../lib/context";
+import { FormatTime } from "../lib/functions";
 
 interface GameProps {
   goToPage: () => void;
@@ -11,8 +12,13 @@ interface GameProps {
 
 export default function ModalEndGame({ goToPage }: GameProps) {
   const { t } = useTranslation();
-  const { setShowModalEndGame, setEndGame, setResetField, setGameResult } =
-    useContext(AppContext);
+  const {
+    setShowModalEndGame,
+    setEndGame,
+    setResetField,
+    setGameResult,
+    matchTime,
+  } = useContext(AppContext);
   const easyData = [
     { name: "Vitórias", value: 12 },
     { name: "Derrotas", value: 1 },
@@ -23,7 +29,8 @@ export default function ModalEndGame({ goToPage }: GameProps) {
   return (
     <Container>
       <section className="match-duration">
-        {t("Match Duration")}: <span className="duration">00:00</span>
+        {t("Match Duration")}:{" "}
+        <span className="duration">{FormatTime(matchTime)}</span>
       </section>
       <div className="chart">
         <GenericPieChart

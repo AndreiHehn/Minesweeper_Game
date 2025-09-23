@@ -12,6 +12,7 @@ export const Container = styled.div`
 
   .duration {
     margin-left: 5px;
+    font-weight: 600;
   }
 
   .chart {

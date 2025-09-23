@@ -5,6 +5,7 @@ import { AppContext } from "../lib/context";
 import { useTranslation } from "react-i18next";
 import MineIcon from "../assets/icons/MineIcon.png";
 import TimeIcon from "../assets/icons/TimeIcon.svg?react";
+import { FormatTime } from "../lib/functions";
 
 interface GameProps {
   goToPage: () => void;
@@ -20,9 +21,9 @@ export default function Header({ goToPage }: GameProps) {
     setMinesRemaining,
     fieldSize,
     resetField,
+    matchTime,
   } = useContext(AppContext);
   const { t } = useTranslation();
-  const currentTime = "0:00";
 
   // Update mines amount after every new game
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function Header({ goToPage }: GameProps) {
       <div className="timeContainer">
         <h2 className="time">
           <TimeIcon className="TimeIcon"></TimeIcon>
-          <span className="timeText">{currentTime}</span>
+          <span className="timeText">{FormatTime(matchTime)}</span>
         </h2>
       </div>
       <Button
