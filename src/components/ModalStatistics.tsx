@@ -32,24 +32,26 @@ export default function ModalStatistics() {
           <h3 className="chartBest">
             {t("Best Time")}: {FormatTime(stats.Easy.best)}
           </h3>
-          {easyData[0].value + easyData[1].value == 0 ? (
-            <h4 className="no-matches">{t("0 matches played")}</h4>
-          ) : (
-            <GenericPieChart
-              data={easyData}
-              dataColors={colors}
-              centerData={
-                Math.round(
-                  (easyData[0].value /
-                    (easyData[0].value + easyData[1].value)) *
-                    100
-                ).toString() + "%"
-              }
-              displayTooltip={true}
-              width={170}
-              height={170}
-            ></GenericPieChart>
-          )}
+          <div className="chartInfo">
+            {easyData[0].value + easyData[1].value == 0 ? (
+              <h4 className="no-matches">{t("0 matches played")}</h4>
+            ) : (
+              <GenericPieChart
+                data={easyData}
+                dataColors={colors}
+                centerData={
+                  Math.round(
+                    (easyData[0].value /
+                      (easyData[0].value + easyData[1].value)) *
+                      100
+                  ).toString() + "%"
+                }
+                displayTooltip={true}
+                width={170}
+                height={170}
+              ></GenericPieChart>
+            )}
+          </div>
         </div>
 
         <div className="chart">
@@ -57,48 +59,52 @@ export default function ModalStatistics() {
           <h3 className="chartBest">
             {t("Best Time")}: {FormatTime(stats.Medium.best)}
           </h3>
-          {mediumData[0].value + mediumData[1].value == 0 ? (
-            <h4 className="no-matches">{t("0 matches played")}</h4>
-          ) : (
-            <GenericPieChart
-              data={mediumData}
-              dataColors={colors}
-              centerData={
-                Math.round(
-                  (mediumData[0].value /
-                    (mediumData[0].value + mediumData[1].value)) *
-                    100
-                ).toString() + "%"
-              }
-              displayTooltip={true}
-              width={170}
-              height={170}
-            ></GenericPieChart>
-          )}
+          <div className="chart-info">
+            {mediumData[0].value + mediumData[1].value == 0 ? (
+              <h4 className="no-matches">{t("0 matches played")}</h4>
+            ) : (
+              <GenericPieChart
+                data={mediumData}
+                dataColors={colors}
+                centerData={
+                  Math.round(
+                    (mediumData[0].value /
+                      (mediumData[0].value + mediumData[1].value)) *
+                      100
+                  ).toString() + "%"
+                }
+                displayTooltip={true}
+                width={170}
+                height={170}
+              ></GenericPieChart>
+            )}
+          </div>
         </div>
         <div className="chart">
           <h2 className="chartTitle">{t("Hard")}</h2>
           <h3 className="chartBest">
             {t("Best Time")}: {FormatTime(stats.Hard.best)}
           </h3>
-          {hardData[0].value + hardData[1].value == 0 ? (
-            <h4 className="no-matches">{t("0 matches played")}</h4>
-          ) : (
-            <GenericPieChart
-              data={hardData}
-              dataColors={colors}
-              centerData={
-                Math.round(
-                  (hardData[0].value /
-                    (hardData[0].value + hardData[1].value)) *
-                    100
-                ).toString() + "%"
-              }
-              displayTooltip={true}
-              width={170}
-              height={170}
-            ></GenericPieChart>
-          )}
+          <div className="chart-info">
+            {hardData[0].value + hardData[1].value == 0 ? (
+              <h4 className="no-matches">{t("0 matches played")}</h4>
+            ) : (
+              <GenericPieChart
+                data={hardData}
+                dataColors={colors}
+                centerData={
+                  Math.round(
+                    (hardData[0].value /
+                      (hardData[0].value + hardData[1].value)) *
+                      100
+                  ).toString() + "%"
+                }
+                displayTooltip={true}
+                width={170}
+                height={170}
+              ></GenericPieChart>
+            )}
+          </div>
         </div>
       </section>
       <footer className="reset-stats">

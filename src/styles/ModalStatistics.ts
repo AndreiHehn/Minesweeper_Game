@@ -29,6 +29,12 @@ export const Container = styled.div`
     }
   }
 
+  .chart-info {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
   .no-matches {
     font-size: 16px;
     font-weight: 500;
