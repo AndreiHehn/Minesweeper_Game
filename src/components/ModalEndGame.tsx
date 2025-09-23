@@ -20,6 +20,7 @@ export default function ModalEndGame({ goToPage }: GameProps) {
     matchTime,
     selectedDifficulty,
     stats,
+    setLoadingMessage,
   } = useContext(AppContext);
   const data = [
     {
@@ -94,7 +95,11 @@ export default function ModalEndGame({ goToPage }: GameProps) {
           borderRadius="4px"
           width="125px"
           height="32px"
-          functionButton={() => (setShowModalEndGame(false), goToPage())}
+          functionButton={() => (
+            setShowModalEndGame(false),
+            goToPage(),
+            setLoadingMessage("Wait, deactivating the mines")
+          )}
         >
           {t("Back to Menu")}
         </Button>
