@@ -10,6 +10,7 @@ import ModalStatistics from "./components/ModalStatistics";
 import LoadingScreen from "./components/LoadingScreen";
 import Game from "./components/Game";
 import ModalEndGame from "./components/ModalEndGame";
+import { ModalHelp } from "./components/ModalHelp";
 
 function App() {
   const {
@@ -28,6 +29,8 @@ function App() {
     setActivePage,
     showModalEndGame,
     gameResult,
+    showModalHelp,
+    setShowModalHelp,
   } = useContext(AppContext);
   const { t } = useTranslation();
 
@@ -178,6 +181,17 @@ function App() {
           width="400px"
         >
           <ModalAvatar />
+        </ModalGeneric>
+      )}
+      {showModalHelp && (
+        <ModalGeneric
+          functionCloseModal={() => setShowModalHelp(false)}
+          mobileFullScreen
+          top="50%"
+          left="50%"
+          title={t("How to Play")}
+        >
+          <ModalHelp />
         </ModalGeneric>
       )}
       {showModalStatistics && (

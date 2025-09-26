@@ -47,6 +47,8 @@ interface AppContextProps {
   setShowModalSettings: Dispatch<SetStateAction<boolean>>;
   showModalAvatar: boolean;
   setShowModalAvatar: Dispatch<SetStateAction<boolean>>;
+  showModalHelp: boolean;
+  setShowModalHelp: Dispatch<SetStateAction<boolean>>;
   showModalStatistics: boolean;
   setShowModalStatistics: Dispatch<SetStateAction<boolean>>;
   showModalEndGame: boolean;
@@ -108,6 +110,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
 
   const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
   const [showModalAvatar, setShowModalAvatar] = useState<boolean>(false);
+  const [showModalHelp, setShowModalHelp] = useState<boolean>(false);
   const [showModalStatistics, setShowModalStatistics] =
     useState<boolean>(false);
   const [showModalEndGame, setShowModalEndGame] = useState<boolean>(false);
@@ -205,6 +208,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         setShowModalAvatar,
         showModalStatistics,
         setShowModalStatistics,
+        showModalHelp,
+        setShowModalHelp,
         showModalEndGame,
         setShowModalEndGame,
         resetSettings,

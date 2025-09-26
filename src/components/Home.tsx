@@ -37,6 +37,7 @@ export default function Home({ goToPage }: HomeProps) {
     resetStats,
     setResetStats,
     setStats,
+    setShowModalHelp,
   } = useContext(AppContext);
 
   const defaultStats = {
@@ -102,7 +103,7 @@ export default function Home({ goToPage }: HomeProps) {
           color="gray"
           borderRadius="4px"
           width="130px"
-          functionButton={() => console.log("How to Play")}
+          functionButton={() => setShowModalHelp(true)}
         >
           {t("How to Play")}
         </Button>
