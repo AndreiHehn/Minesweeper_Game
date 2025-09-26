@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: auto;
-  height: fit-content;
+  height: 250px;
+  position: relative;
   .charts {
     display: flex;
     justify-content: center;
@@ -45,5 +46,8 @@ export const Container = styled.div`
   .reset-stats {
     display: flex;
     justify-content: end;
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 `;
