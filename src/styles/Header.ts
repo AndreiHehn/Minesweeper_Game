@@ -16,6 +16,17 @@ export const Container = styled.header`
     right: 20px;
   }
 
+  .homeIcon {
+    position: absolute;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+
+    path {
+      fill: #f4f4f5;
+    }
+  }
+
   .userContainer {
     display: flex;
     flex-direction: row;
@@ -29,12 +40,27 @@ export const Container = styled.header`
       border: 2px solid #f4f4f5;
       background-color: white;
       margin: 0 20px;
+
+      @media (max-width: 810px) {
+        width: 35px;
+        height: 35px;
+        margin: 0 10px;
+      }
     }
 
     .username {
       color: #f4f4f5;
       font-size: 20px;
       margin-right: 20px;
+
+      @media (max-width: 810px) {
+        font-size: 14px;
+        margin-right: 10px;
+      }
+
+      @media (max-width: 450px) {
+        margin-left: 10px;
+      }
     }
   }
 
@@ -56,11 +82,23 @@ export const Container = styled.header`
       display: flex;
       align-items: center;
 
+      @media (max-width: 810px) {
+        font-size: 14px;
+        margin: 0 10px;
+      }
+
       .difficultyText,
       .minesText,
       .timeText {
         font-weight: 700;
         margin-left: 8px;
+      }
+
+      .timeText,
+      .difficultyText {
+        @media (max-width: 500px) {
+          margin-left: 0;
+        }
       }
 
       .minesText {

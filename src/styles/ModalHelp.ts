@@ -5,6 +5,10 @@ export const Container = styled.div`
   width: 500px;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   .slick-slider {
     position: relative;
     width: 100%;

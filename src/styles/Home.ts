@@ -19,15 +19,54 @@ export const Container = styled.main`
     top: 20px;
     gap: 20px;
     user-select: none;
+
+    .app-title {
+      display: flex;
+      gap: 20px;
+
+      @media (max-width: 700px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+    }
+
     h1 {
       font-size: 70px;
       font-family: Monoton;
       color: var(--text-primary);
+
+      @media (max-width: 1150px) {
+        font-size: 50px;
+      }
+
+      @media (max-width: 840px) {
+        font-size: 40px;
+      }
+
+      @media (max-width: 510px) {
+        font-size: 25px;
+      }
     }
 
     .mineIcon {
       width: 100px;
       height: 100px;
+
+      @media (max-width: 1150px) {
+        width: 70px;
+        height: 70px;
+      }
+
+      @media (max-width: 840px) {
+        width: 60px;
+        height: 60px;
+      }
+
+      @media (max-width: 420px) {
+        width: 50px;
+        height: 50px;
+      }
     }
   }
 
@@ -86,5 +125,9 @@ export const Container = styled.main`
     display: flex;
     gap: 10px;
     height: 40px;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
   }
 `;

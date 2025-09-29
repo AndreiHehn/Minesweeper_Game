@@ -62,8 +62,11 @@ export default function Home({ goToPage }: HomeProps) {
     <Container>
       <div className="app-header">
         <img src={MineIcon} alt="Mine" className="mineIcon" />
-        <h1 className="app-title">REACT</h1>
-        <h1 className="app-title">MINESWEEPER</h1>
+        <div className="app-title">
+          <h1 className="app-title-1">REACT</h1>
+          <h1 className="app-title-2">MINESWEEPER</h1>
+        </div>
+
         <img src={MineIcon} alt="Mine" className="mineIcon" />
       </div>
       <div className="subheader">

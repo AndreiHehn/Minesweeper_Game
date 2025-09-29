@@ -13,7 +13,9 @@ export default function Game({ goToPage }: GameProps) {
   return (
     <Container>
       <Header goToPage={goToPage}></Header>
-      <Field key={resetField}></Field>
+      <article className="field">
+        <Field key={resetField}></Field>
+      </article>
     </Container>
   );
 }

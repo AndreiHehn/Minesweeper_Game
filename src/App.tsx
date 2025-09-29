@@ -174,7 +174,6 @@ function App() {
       {showModalAvatar && (
         <ModalGeneric
           functionCloseModal={VerifyAvatar}
-          mobileFullScreen
           top="50%"
           left="50%"
           title={t("Select your Avatar")}

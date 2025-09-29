@@ -32,7 +32,7 @@ export const Container = styled.div<Props>`
   margin: 2px;
   background-color: ${(props) =>
     props.cellContent === "closed"
-      ? "#2779c6" // fechado
+      ? "#2779c6"
       : props.cellContent === "flag"
       ? "#f2a917"
       : props.cellContent === "mine"
@@ -44,7 +44,7 @@ export const Container = styled.div<Props>`
   &:hover {
     background-color: ${(props) =>
       props.cellContent === "closed"
-        ? "#3d98ed" // fechado
+        ? "#3d98ed"
         : props.cellContent === "flag"
         ? "#f2a917"
         : props.cellContent === "mine"

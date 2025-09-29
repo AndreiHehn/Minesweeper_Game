@@ -49,6 +49,7 @@ export default function Cell({
     fieldSize,
     endGame,
   } = useContext(AppContext);
+  const screenSize = window.innerWidth;
   const [clickable, setClickable] = useState(enableClick);
 
   // o que o jogador vê (nulo = célula fechada)
@@ -58,7 +59,8 @@ export default function Cell({
 
   const [isExiting] = useState(false);
 
-  const cellSize = selectedDifficulty === "Easy" ? "56px" : "32px";
+  const cellSize =
+    selectedDifficulty === "Easy" && screenSize > 610 ? "56px" : "32px";
 
   const cellContentMap: Record<CellContent, string> = {
     mine: MineIcon,
@@ -97,9 +99,7 @@ export default function Cell({
         } else {
           setMinesRemaining(minesRemaining - 1);
         }
-      }
-      // Se já tiver bandeira → remove
-      else if (visibleContent === "flag") {
+      } else if (visibleContent === "flag") {
         setVisibleContent(null);
         setMarkedMines(markedMines - 1);
 
@@ -110,6 +110,26 @@ export default function Cell({
         }
       }
     }
+  };
+
+  // Mark Flag on Mobile
+  let pressTimer: NodeJS.Timeout;
+
+  const handleTouchStart = () => {
+    pressTimer = setTimeout(() => {
+      const fakeEvent = {
+        preventDefault: () => {},
+        nativeEvent: {} as any,
+        isDefaultPrevented: () => false,
+        isPropagationStopped: () => false,
+        persist: () => {},
+      } as React.MouseEvent;
+      handleRightClick(fakeEvent);
+    }, 500);
+  };
+
+  const handleTouchEnd = () => {
+    clearTimeout(pressTimer);
   };
 
   useEffect(() => {
@@ -143,6 +163,8 @@ export default function Cell({
       }
       onClick={handleClick}
       onContextMenu={handleRightClick}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {visibleContent && (
         <img

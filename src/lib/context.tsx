@@ -121,7 +121,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [quitAvatar, setQuitAvatar] = useState<boolean>(false);
   const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
   const [resetStats, setResetStats] = useState<boolean>(false);
-  const [activePage, setActivePage] = useState<string>("Home");
+  const [activePage, setActivePage] = useState<string>("Game");
   const [loadingMessage, setLoadingMessage] = useState<string>(
     "Wait, planting the mines"
   );

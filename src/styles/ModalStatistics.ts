@@ -2,12 +2,20 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: auto;
-  height: 250px;
-  position: relative;
+
+  @media (min-width: 768px) {
+    position: relative;
+    height: 250px;
+  }
   .charts {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .chart {
@@ -45,9 +53,13 @@ export const Container = styled.div`
 
   .reset-stats {
     display: flex;
-    justify-content: end;
     position: absolute;
     right: 0;
     bottom: 0;
+
+    @media (max-width: 768px) {
+      right: 10px;
+      bottom: 10px;
+    }
   }
 `;

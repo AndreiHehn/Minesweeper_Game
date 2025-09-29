@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   width: 500px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   .pageTitle {
     margin-top: 5px;
     font-size: 20px;

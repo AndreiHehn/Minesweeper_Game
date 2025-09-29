@@ -80,5 +80,11 @@ export const Container = styled.div`
     margin-top: 20px;
     gap: 10px;
     justify-content: flex-end;
+
+    @media (max-width: 768px) {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
   }
 `;
