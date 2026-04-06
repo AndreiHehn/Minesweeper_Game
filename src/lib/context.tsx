@@ -92,20 +92,20 @@ interface AppContextProps {
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
   const [username, setUsername] = useState<string>(
-    localStorage.getItem("minesweeper_username") || "Player 001"
+    localStorage.getItem("minesweeper_username") || "Player 001",
   );
   const [theme, setTheme] = useState<string>(
-    localStorage.getItem("minesweeper_theme") || "light"
+    localStorage.getItem("minesweeper_theme") || "light",
   );
   const [selectedLanguage, setSelectedLanguage] = useState(
-    () => localStorage.getItem("minesweeper_language") || "en"
+    () => localStorage.getItem("minesweeper_language") || "en",
   );
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>(
     () =>
-      (localStorage.getItem("minesweeper_difficulty") as Difficulty) || "Easy"
+      (localStorage.getItem("minesweeper_difficulty") as Difficulty) || "Easy",
   );
   const [selectedAvatar, setSelectedAvatar] = useState<string>(
-    localStorage.getItem("minesweeper_avatar") || ""
+    localStorage.getItem("minesweeper_avatar") || "",
   );
 
   const [showModalSettings, setShowModalSettings] = useState<boolean>(false);
@@ -121,9 +121,9 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [quitAvatar, setQuitAvatar] = useState<boolean>(false);
   const [emptyUsername, setEmptyUsername] = useState<boolean>(false);
   const [resetStats, setResetStats] = useState<boolean>(false);
-  const [activePage, setActivePage] = useState<string>("Game");
+  const [activePage, setActivePage] = useState<string>("Home");
   const [loadingMessage, setLoadingMessage] = useState<string>(
-    "Wait, planting the mines"
+    "Wait, planting the mines",
   );
   const [gameResult, setGameResult] = useState<string>("");
   const [minesRemaining, setMinesRemaining] = useState<number>(0);
@@ -142,7 +142,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   // calcular dinamicamente o tamanho baseado na dificuldade
   const fieldSize = useMemo(
     () => difficultySizes[selectedDifficulty],
-    [selectedDifficulty]
+    [selectedDifficulty],
   );
 
   const defaultStats: GameStats = {
